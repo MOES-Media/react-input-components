@@ -55,6 +55,7 @@ export default class extends MetaComponent<ButtonProps, ButtonState>{
         return(<Button colors={this.props.themeable.colors}
                         text={this.props.themeable.text}
                         hasFocus={this.state.focus}
+                        disabled={this.props.disabled}
                         onFocus={this._onFocus.bind(this)}
                         onBlur={this._onBlur.bind(this)}
                         onClick={this._onClick.bind(this)}>

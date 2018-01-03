@@ -2,11 +2,12 @@
   "name": "react-input-components",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://MOES-Media.github.io/react-input-components/",
   "scripts": {
     "start": "NODE_PATH=./src react-scripts start",
     "build": "NODE_PATH=./src react-scripts build",
     "test": "NODE_PATH=./src react-scripts test --env=jsdom --setupTestFrameworkScriptFile=./src/__test__/setup.js",
-    "test:coverage": "NODE_PATH=./src react-scripts test --env=jsdom --setupTestFrameworkScriptFile=./src/__test__/setup.js --coverage --collectCoverageFrom=src/**/*js --collectCoverageFrom=!src/stories/**/*.js --collectCoverageFrom=!src/index.js",
+    "test:coverage": "NODE_PATH=./src react-scripts test --env=jsdom --setupTestFrameworkScriptFile=./src/__test__/setup.js --coverage --collectCoverageFrom=src/**/*js --collectCoverageFrom=!src/stories/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/types/**/*js",
     "eject": "NODE_PATH=./src react-scripts eject",
     "lint": "eslint --config node_modules/eslint-config-react-app/index.js src",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",

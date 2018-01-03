@@ -3,7 +3,7 @@ import React from 'react'
 import theme from 'theme'
 import type {Themeable} from 'types'
 
-export default (WrappedComponent: React.Element<Themeable, any>) => {
+export default (WrappedComponent: React.Component<Themeable, any>) => {
 
     const composeTheme = (key: string) => {
         return {
