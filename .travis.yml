@@ -35,3 +35,6 @@ deploy:
   local_dir: storybook-static
   on:
     branch: master
+
+ notifications:
+    slack: moes-media:$SLACK_TOKEN    

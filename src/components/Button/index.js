@@ -8,7 +8,11 @@ export type ButtonProps = Themeable & {
     children: React.Node,
     onClick?: Function,
     disabled?: boolean,
-    themeable: Themeable
+    themeable: Themeable,
+    xs?: boolean,
+    sm?: boolean,
+    md?: boolean,
+    lg?: boolean
 }
 
 type ButtonState = Meta & {
@@ -49,6 +53,12 @@ export default class extends MetaComponent<ButtonProps, ButtonState>{
 
     _onClick(){
         this.props.onClick && this.props.onClick()
+    }
+
+    _calculateSize(){
+        if(this.props.xs) return 'padding: 1px 5px; font-size: 12px; line-height: 1.5;'
+        if(this.props.sm) return 'padding: 5px 10px; font-size: 12px; line-height: 1.5;'
+        if(this.props.lg) return 'padding: 10px 16px; font-size: 18px; line-height: 1.3333333;'
     }
 
     render(){
