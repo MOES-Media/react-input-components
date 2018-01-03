@@ -1,0 +1,37 @@
+sudo: false
+language: node_js
+node_js:
+  - "6"
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+before_install:
+  - npm i -g npm@latest
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+install:
+  yarn
+
+script:
+  - yarn lint
+  - yarn flow
+  - yarn test:coverage
+  - yarn build
+  - yarn run build-storybook
+
+after_script:
+  - COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN yarn coveralls
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: storybook-static
+  on:
+    branch: master
