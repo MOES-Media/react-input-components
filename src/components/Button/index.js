@@ -66,6 +66,7 @@ export default class extends MetaComponent<ButtonProps, ButtonState>{
                         text={this.props.themeable.text}
                         hasFocus={this.state.focus}
                         disabled={this.props.disabled}
+                        size={this._calculateSize()}
                         onFocus={this._onFocus.bind(this)}
                         onBlur={this._onBlur.bind(this)}
                         onClick={this._onClick.bind(this)}>
