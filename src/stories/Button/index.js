@@ -12,6 +12,7 @@ storiesOf('Button', module).add('Button', () => <div>
             <thead>
                 {sizes.map(size => (<th>{size}</th>))}
                 <th>default</th>
+                <th>disabled</th>
                 <th width="10%">block</th>
             </thead>
             <tbody>
@@ -32,7 +33,7 @@ storiesOf('Button', module).add('Button', () => <div>
                         return (<td key={size}><Button {...props} onClick={action('clicked')}>default</Button></td>)
                     })}
                     <td><Button onClick={action('clicked')}>default</Button></td>
-                    <td><Button {...props} onClick={action('clicked')}>{key}</Button></td>
+                    <td><Button disabled onClick={action('clicked')}>default</Button></td>
                     <td><Button block onClick={action('clicked')}>default</Button></td>
                 </tr>
             </tbody>

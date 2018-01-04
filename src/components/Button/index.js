@@ -37,7 +37,7 @@ const Button = styled.button`
     margin: 0 3px 0;
     color: ${props => props.text.buttonText};
     background: ${props => props.hasFocus ? props.colors.active : props.colors.default} none;
-    ${props => props.disabled && 'opacity: 0.35;'}
+    ${props => props.disabled && 'opacity: 0.65;'}
     vertical-align: baseline;
     border: none;
     outline: 0;
