@@ -37,4 +37,4 @@ deploy:
     branch: master
 
 notifications:
-  slack: moes-media:$SLACK_TOKEN    
+  slack: moes-media:$SLACK_TOKEN#development

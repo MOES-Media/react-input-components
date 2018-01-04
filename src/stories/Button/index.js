@@ -12,6 +12,7 @@ storiesOf('Button', module).add('Button', () => <div>
             <thead>
                 {sizes.map(size => (<th>{size}</th>))}
                 <th>default</th>
+                <th width="10%">block</th>
             </thead>
             <tbody>
                 {themeKeys.map(key => {
@@ -19,10 +20,19 @@ storiesOf('Button', module).add('Button', () => <div>
                     return (<tr key={key}>
                         {sizes.map(size => {
                             const props = {[key]: true, [size]: true}
-                            return (<td key={size}><Button {...props} >{key}</Button></td>)})}
-                        <td><Button {...props}>{key}</Button></td>
+                            return (<td key={size}><Button {...props} onClick={action('clicked')}>{key}</Button></td>)})}
+                        <td><Button {...props} onClick={action('clicked')}>{key}</Button></td>
+                        <td><Button {...props} block onClick={action('clicked')}>{key}</Button></td>
                     </tr>)}
                 )}
+                <tr>
+                    {sizes.map(size => {
+                        const props = {[size]: true}
+                        return (<td key={size}><Button {...props} onClick={action('clicked')}>default</Button></td>)
+                    })}
+                    <td><Button onClick={action('clicked')}>default</Button></td>
+                    <td><Button block onClick={action('clicked')}>default</Button></td>
+                </tr>
             </tbody>
         </table>
     </div>)

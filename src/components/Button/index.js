@@ -12,7 +12,8 @@ export type ButtonProps = Themeable & {
     xs?: boolean,
     sm?: boolean,
     md?: boolean,
-    lg?: boolean
+    lg?: boolean,
+    block?: boolean,
 }
 
 type ButtonState = Meta & {
@@ -43,7 +44,8 @@ const Button = styled.button`
     min-height: 1em;
     display: inline-block;
     cursor: pointer;
-    ${props => props.size ? props.size: ''}
+    ${props => props.size && props.size}
+    ${props => props.block && 'display: block; width: 100%;'}
 
     &:hover{
         background: ${props => props.colors.hover};
@@ -52,8 +54,8 @@ const Button = styled.button`
 
 export default class extends MetaComponent<ButtonProps, ButtonState>{
 
-    _onClick(){
-        this.props.onClick && this.props.onClick()
+    _onClick(e: Event){
+        this.props.onClick && this.props.onClick(e)
     }
 
     _calculateSize(){
@@ -69,6 +71,7 @@ export default class extends MetaComponent<ButtonProps, ButtonState>{
                         hasFocus={this.state.focus}
                         disabled={this.props.disabled}
                         size={this._calculateSize()}
+                        block={this.props.block}
                         onFocus={this._onFocus.bind(this)}
                         onBlur={this._onBlur.bind(this)}
                         onClick={this._onClick.bind(this)}>
