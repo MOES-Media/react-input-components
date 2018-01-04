@@ -1,4 +1,4 @@
 //@flow
 export * from './Themeable'
-export * from './Color'
+export * from './Theme'
 export * from './Meta'
