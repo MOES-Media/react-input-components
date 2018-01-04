@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - "6"
+  - '6'
 env:
   - CXX=g++-4.8
 addons:
@@ -14,20 +14,15 @@ before_install:
   - npm i -g npm@latest
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-
-install:
-  yarn
-
+install: yarn
 script:
   - yarn lint
   - yarn flow
   - yarn test:coverage
   - yarn build
   - yarn run build-storybook
-
 after_script:
   - COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN yarn coveralls
-
 deploy:
   provider: pages
   skip_cleanup: true
@@ -35,6 +30,6 @@ deploy:
   local_dir: storybook-static
   on:
     branch: master
-
 notifications:
-  slack: moes-media:rEmlCmaxXg6L5rqgMJfMNWMf#development
+  slack:
+      secure: M6WxL2LVb6vRUKHw86ijyM3D3HUh77i/duqa0IBBXUT7zSNkVilT1ZyXHGseSW/KfjJpTJClKoSgi9kD1q3yhIgkZR2S1Hx0hmupy0H9UWFskw2hteUOKDzq1sWHJK0yCHANqpXhehbK5JOCUbvI7l+cmqJd1HXL5EF0JK389oW2eeMoM04BYZmBol4ElK3VD6BugiLBYkShV8scGYvbAqFQNosTF3WtbwkhkluxVgS+/zkmgBzj6KyA8OgA4r86sQb8wSep+l68waTe7yhDL5DMd5ooIuE+kup6mwuU5JZIlgrgVDpgSak8cfolib4TJXxwZJWmS75OqqpOmqi80jsfD/lM94R+dSjOufJ10sVgFH2RnO3As8BP3OtaPtpOcgo6KNQrUVqdfBYvw5xD4TTKekixrjehT4QobMTxI7atqBRlEylPMGowtoiM8uMRPT3TAokzL0q+AKsKtw929c8Jzran4dFaXWRIV3LO1QNejKpcapfVCn+KOClJ5X3dRX/2kMIeAREBwEyJ9XHwA8QCJaV760EN8a96kksNhKKgjBBuR/b4s79hK7JnLNk68I8Bjy/rl/yGe4OzcFaUisJ/Lm2jS68JIDHfjTaDg1Tchw8yHKivFRaeIa84bkrFMrVToArfZhPuh9tqiyV5eZwA7QulP+4WAc+LTUONUb4=
