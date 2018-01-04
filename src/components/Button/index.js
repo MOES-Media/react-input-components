@@ -47,9 +47,9 @@ const Button = styled.button`
     ${props => props.size && props.size}
     ${props => props.block && 'display: block; width: 100%;'}
 
-    &:hover{
-        background: ${props => props.colors.hover};
-    }
+    ${props => !props.disabled && `&:hover{
+        background: ${props.colors.hover};
+    }`}
 `
 
 export default class extends MetaComponent<ButtonProps, ButtonState>{
