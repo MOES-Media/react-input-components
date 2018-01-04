@@ -43,7 +43,7 @@ const Button = styled.button`
     outline: 0;
     min-height: 1em;
     display: inline-block;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
     ${props => props.size && props.size}
     ${props => props.block && 'display: block; width: 100%;'}
 
