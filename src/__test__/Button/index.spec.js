@@ -16,6 +16,19 @@ describe('Button', () => {
         expect(renderedThemeableButton).toBePresent()
     })
 
+    it('should render a block button', () => {
+        const renderedComponent = renderComponent({block: true})
+        expect(renderedComponent).toBePresent()
+    })
+
+    it('should render when size props are passed', () => {
+        const sizes = ['xs', 'sm', 'md', 'lg']
+        sizes.map(size => {
+            const props = {[size]: true}
+            expect(renderComponent(props)).toBePresent()
+        })
+    })
+
     it('should set focus and touched when focused', () => {
         const renderedComponent = renderComponent({})
         expect(renderedComponent.state().focus).toBe(false)
