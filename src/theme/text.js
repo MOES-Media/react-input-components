@@ -9,10 +9,10 @@ export default {
     success: {
         buttonText: '#fff',
     },
-    war: {
+    warn: {
         buttonText: '#fff',
     },
-    error: {
+    danger: {
         buttonText: '#fff',
     },
     default: {

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import type { Themeable, Meta } from 'types'
 
 export type ButtonProps = Themeable & {
-    children: React.Node,
+    children: React$Node,
     onClick?: Function,
     disabled?: boolean,
     themeable: Themeable,
@@ -31,7 +31,7 @@ const Button = styled.button`
     font-style: normal;
     line-height: 1em;
     font-weight: 700;
-    text-shaow: none;
+    text-shadow: none;
     padding: 10px 20px;
     margin: 0 3px 0;
     color: ${props => props.text.buttonText};
@@ -43,6 +43,7 @@ const Button = styled.button`
     min-height: 1em;
     display: inline-block;
     cursor: pointer;
+    ${props => props.size ? props.size: ''}
 
     &:hover{
         background: ${props => props.colors.hover};
@@ -62,6 +63,7 @@ export default class extends MetaComponent<ButtonProps, ButtonState>{
     }
 
     render(){
+        console.log(this.props.themeable)
         return(<Button colors={this.props.themeable.colors}
                         text={this.props.themeable.text}
                         hasFocus={this.state.focus}
