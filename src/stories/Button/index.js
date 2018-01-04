@@ -22,6 +22,7 @@ storiesOf('Button', module).add('Button', () => <div>
                             const props = {[key]: true, [size]: true}
                             return (<td key={size}><Button {...props} onClick={action('clicked')}>{key}</Button></td>)})}
                         <td><Button {...props} onClick={action('clicked')}>{key}</Button></td>
+                        <td><Button {...props} disabled onClick={action('clicked')}>{key}</Button></td>
                         <td><Button {...props} block onClick={action('clicked')}>{key}</Button></td>
                     </tr>)}
                 )}
@@ -31,6 +32,7 @@ storiesOf('Button', module).add('Button', () => <div>
                         return (<td key={size}><Button {...props} onClick={action('clicked')}>default</Button></td>)
                     })}
                     <td><Button onClick={action('clicked')}>default</Button></td>
+                    <td><Button {...props} onClick={action('clicked')}>{key}</Button></td>
                     <td><Button block onClick={action('clicked')}>default</Button></td>
                 </tr>
             </tbody>
