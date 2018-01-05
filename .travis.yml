@@ -32,6 +32,7 @@ deploy:
     on:
       branch: master
   - provider: npm
+    echo: deploying to npm
     email: info@moes-media.be
     api:
       key:
