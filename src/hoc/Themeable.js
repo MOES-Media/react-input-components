@@ -22,7 +22,6 @@ export default (WrappedComponent: React$ComponentType<Themeable>, overrideDefaul
     }
 
     return (props: Themeable) => {
-        console.log(props)
         return <WrappedComponent themeable={calculatedTheme(props)} {...props} />
     }
 }
