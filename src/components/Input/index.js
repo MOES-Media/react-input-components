@@ -3,6 +3,7 @@ import React from 'react'
 import MetaComponent from 'components/MetaComponent'
 import type {Meta, Themeable} from 'types' 
 import styled from 'styled-components'
+import {lighten} from 'polished'
 
 type InputProps = {
     type?: string,
@@ -12,6 +13,7 @@ type InputProps = {
     disabled?: boolean,
     onChange?: Function,
     placeholder?: string,
+    block?: boolean,
 }
 
 const Input = styled.input.attrs({
@@ -38,6 +40,12 @@ const Input = styled.input.attrs({
     margin: 0;
     max-width: 100%;
     ${props => props.disabled && 'pointer-events: none; opacity: .45;'}
+    ${props => props.block && 'display: block; min-width: 100%;'}
+    box-sizing: border-box;
+
+    &::placeholder{
+        opacity: ${props => props.hasFocus ? '1' : '.65'};
+    }
 `
 
 export default class extends MetaComponent<InputProps, Meta>{
@@ -61,6 +69,7 @@ export default class extends MetaComponent<InputProps, Meta>{
                         onFocus={this._onFocus.bind(this)}
                         onBlur={this._onBlur.bind(this)}
                         value={this.props.value}
+                        block={this.props.block}
                         onChange={this._onChange.bind(this)} />
     }
 }

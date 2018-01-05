@@ -1,5 +1,4 @@
 //@flow
-import React from 'react'
 import themeable from 'hoc/Themeable'
 import {default as ButtonComponent} from 'components/Button'
 import {default as Input} from 'components/Input'
