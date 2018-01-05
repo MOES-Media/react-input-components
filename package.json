@@ -1,7 +1,6 @@
 {
   "name": "react-input-components",
   "version": "0.1.1-0",
-  "private": true,
   "homepage": "https://MOES-Media.github.io/react-input-components/",
   "scripts": {
     "start": "NODE_PATH=./src react-scripts start",
