@@ -2,7 +2,8 @@
 import {PureComponent} from 'react'
 import type {Meta} from 'types'
 
-export default class MetaComponent<T, T> extends PureComponent<any, Meta>{
+// eslint-disable-next-line
+export default class<T,T> extends PureComponent<any, Meta>{
 
     state={
         focus: false,
