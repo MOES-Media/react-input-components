@@ -13,6 +13,12 @@ type InputProps = {
     onChange?: Function,
     placeholder?: string,
     block?: boolean,
+    xs?: boolean,
+    sm?: boolean,
+    md?: boolean,
+    lg?: boolean,
+    huge?: boolean,
+    massive?: boolean,
 }
 
 const Input = styled.input.attrs({
@@ -41,6 +47,7 @@ const Input = styled.input.attrs({
     ${props => props.disabled && 'pointer-events: none; opacity: .45;'}
     ${props => props.block && 'display: block; min-width: 100%;'}
     box-sizing: border-box;
+    font-size: ${props => props.size};
 
     &::placeholder{
         opacity: ${props => props.hasFocus ? '1' : '.65'};
@@ -65,6 +72,7 @@ export default class extends MetaComponent<InputProps, Meta>{
                         hasFocus={this.state.focus}
                         disabled={this.props.disabled}
                         name={this.props.name}
+                        size={this.props.xs ? '10px' : this.props.sm ? '12px' : this.props.lg ? '16px' : this.props.huge ? '20px' : this.props.massive ? '24px' : '14px'}
                         onFocus={this._onFocus.bind(this)}
                         onBlur={this._onBlur.bind(this)}
                         value={this.props.value}

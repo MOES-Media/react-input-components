@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions'
 import { Input } from 'components'
 
 const themeKeys = ['primary', 'info', 'success', 'warn', 'danger']
+const sizes = ['xs', 'sm', 'md', 'lg', 'huge', 'massive']
 
 storiesOf('Input', module).add('Input', () => <div>
         <h4>Default</h4>
@@ -25,10 +26,15 @@ storiesOf('Input', module).add('Input', () => <div>
                     const props = {[key]: true}
                     return (<tr key={key}>
                         <td><Input name={`${key}-input`} placeholder={`${key} input`} {...props} onChange={action('onChange')} /></td>
-                        <td><Input name={`${key}-input`} disabled placeholder={`${key} input`} {...props} onChange={action('onChange')} /></td>
-                        <td><div style={{width :"200px"}}><Input name={`${key}-input`} block placeholder={`${key} input`} {...props} onChange={action('onChange')} /></div></td>
+                        <td><Input name={`${key}-input-disabled`} disabled placeholder={`${key} input`} {...props} onChange={action('onChange')} /></td>
+                        <td><div style={{width :"200px"}}><Input name={`${key}-input-block`} block placeholder={`${key} input`} {...props} onChange={action('onChange')} /></div></td>
                     </tr>)
                 })}
             </tbody>
         </table>
+        <h4>Sizes</h4>
+        {sizes.map(size => {
+            const props = {[size]: true}
+            return(<div><p><Input name={`${size}-input`} onChange={action('onChange')} placeholder={size} {...props} /></p></div>)
+        })}
     </div>)
