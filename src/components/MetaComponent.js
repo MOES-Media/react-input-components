@@ -2,7 +2,7 @@
 import {PureComponent} from 'react'
 import type {Meta} from 'types'
 
-export default class extends PureComponent<any, Meta>{
+export default class MetaComponent<T, T> extends PureComponent<any, Meta>{
 
     state={
         focus: false,

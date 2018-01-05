@@ -1,7 +1,7 @@
 //@flow
 import React from 'react'
 import MetaComponent from 'components/MetaComponent'
-import {Meta, Themeable} from 'types' 
+import type {Meta, Themeable} from 'types' 
 import styled from 'styled-components'
 
 type InputProps = {
@@ -19,7 +19,7 @@ const Input = styled.input.attrs({
     box-shadow: none;
     transition: box-shadow .1s ease,border-color .1s ease;
     border-radius: 3px;
-    color: ${props => props.textColor && props.textColor};
+    color: #555;
     border: 1px solid rgba(34,36,38,.15);
     background: #fff;
     padding: 10px 14px;
@@ -41,12 +41,11 @@ export default class extends MetaComponent<InputProps, Meta>{
     }
 
     _onChange({target}: {target: HTMLInputElement}){
-        console.log(target.value)
         !this.props.disabled && this.props.onChange && this.props.onChange(target.value)
     }
 
     render(){
         return <Input type={this.props.type} 
-                      onChange={this._onChange.bind(this)} />
+                        onChange={this._onChange.bind(this)} />
     }
 }
