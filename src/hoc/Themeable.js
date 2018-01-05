@@ -3,7 +3,7 @@ import React from 'react'
 import theme from 'theme'
 import type {Themeable} from 'types'
 
-export default (WrappedComponent: React.Component<Themeable, any>) => {
+export default (WrappedComponent: React$ComponentType<Themeable>, overrideDefault: boolean = true) => {
 
     const composeTheme = (key: string) => {
         return {
@@ -18,7 +18,7 @@ export default (WrappedComponent: React.Component<Themeable, any>) => {
         if(props.success) return composeTheme('success')
         if(props.warn) return composeTheme('warn')
         if(props.danger) return composeTheme('danger')
-        return composeTheme('default')
+        if(overrideDefault) return composeTheme('default')
     }
 
     return (props: Themeable) => {

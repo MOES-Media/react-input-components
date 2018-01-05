@@ -9,4 +9,5 @@ export type Themeable = {
     danger?: boolean,
     default?: boolean,
     themeable?: Theme,
+    overrideDefault?: boolean,
 }

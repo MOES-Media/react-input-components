@@ -54,6 +54,7 @@ const Button = styled.button`
 
 export default class extends MetaComponent<ButtonProps, ButtonState>{
 
+
     _onClick(e: Event){
         this.props.onClick && this.props.onClick(e)
     }
