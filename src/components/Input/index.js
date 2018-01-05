@@ -3,7 +3,6 @@ import React from 'react'
 import MetaComponent from 'components/MetaComponent'
 import type {Meta, Themeable} from 'types' 
 import styled from 'styled-components'
-import {lighten} from 'polished'
 
 type InputProps = {
     type?: string,
