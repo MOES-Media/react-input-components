@@ -51,6 +51,8 @@ const Input = styled.input.attrs({
 
     &::placeholder{
         opacity: ${props => props.hasFocus ? '1' : '.65'};
+        font-size: ${props => props.size};
+        vertical-align: bottom;
     }
 `
 
