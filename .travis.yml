@@ -33,8 +33,7 @@ deploy:
   - provider: npm
     echo: deploying to npm
     email: info@moes-media.be
-    api:
-      key:
+    api_key:
         secure: hjGkQLwEZNEJK6ByCyL2VN8M5yhH4/V+Ybgae5EpW2eUn4KPJ0pmofCAAO/ID8mHxiFGTnb65XFglWPMheHQdl0ow4ZdEl3dpLlDASD1jZUt8tyz/STjCIGwZ7OCXYkniiHXVCr0CGc1yawXWWV16im0gZPqAfNZHNtZ7SI8peFnIn8vnwyiMIJEpdGhmTHPbkwHRtI/r4BiCcfGcSyzn6yz3m3fmJDnCTk7KOTW5G8XRazY9dH7mCTnIR+c33fLRTbIy/+Cu/z0LSFdvHaRMmjYXE0VYYzAMnx309c2FDNmT7NC7j4BI82RS2g3eUXsQ0UymHd9lPx2cPLmMyGU8KTXtYbUFt+IcoqJeAiV0GEAEdS9g9qqaYP5SlQIAlN+o7V2P4vqzpc26fBJJVLkmR4Ji5YxtuereDiSQyaomacFpdrL6iRhRhY1Ms+SMoiF4mTvGWH9NpuomFzxgoHzFY1pj2x2P3sWGA7kNnUJckm/nLf7Y/zGElWRJcKNxU9mEeHxYaBiU4dXuD1dcvmGo6jXSUM5WdLOLhcbjrBuTxxJjjoqezcS48rSzDa6B7TEf3qGU7G5ihEAXs6uDG+4klmcXSc1p/gIwZGA0JeK/FndOoc3IA1CEbaZLB4E4gS64FRBxbb+GzZuyqFbEoBbu/PWPveKQt96O/6yoQjgBuQ=
     on:
       branch: development
