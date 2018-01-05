@@ -24,7 +24,6 @@ script:
 after_script:
 - COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN yarn coveralls
 deploy:
-  matrix:
   - provider: pages
     skip_cleanup: true
     github_token: "$GITHUB_TOKEN"
