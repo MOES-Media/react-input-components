@@ -3,6 +3,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { Input } from 'components'
+import checkbox from './Checkbox'
 
 const themeKeys = ['primary', 'info', 'success', 'warn', 'danger']
 const sizes = ['xs', 'sm', 'md', 'lg', 'huge', 'massive']
@@ -39,4 +40,4 @@ storiesOf('Input', module).add('Input', () => <div>
             const props = {[size]: true}
             return(<div key={size}><p><Input name={`${size}-input`} onChange={action('onChange')} placeholder={size} {...props} /></p></div>)
         })}
-    </div>)
+    </div>).add('Checkbox', checkbox)

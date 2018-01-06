@@ -48,7 +48,7 @@ const Checkbox = styled.label`
         &:after{
             font-family: 'Ionicons';
             content: '\\f3ff';
-            color: rgba(0,0,0,.95);
+            color: ${props.colors.default};
             position: absolute;
             font-size: 17px;
             top: 0;
@@ -76,13 +76,17 @@ export default class extends MetaComponent<CheckboxProps, CheckboxState>{
         this.setState({value: !this.state.value})
     }
 
+    _onChange({target} : {target: HTMLInputElement}){
+        this.props.onChange && this.props.onChange(target.value)
+    }
+
     render(){
-        return(<RelativeWrapper block={this.props.block}>
-            <input type="hidden" name={this.props.name} value={this.state.value} />
+        return(<RelativeWrapper block={this.props.block} 
+                    onClick={this._onClick.bind(this)} 
+                    onFocus={this._onFocus.bind(this)}
+                    onBlur={this._onBlur.bind(this)}>
+            <input type="hidden" name={this.props.name} value={this.state.value} onChange={this._onChange.bind(this)}/>
             <Checkbox hasFocus={this.state.focus}
-                        onClick={this._onClick.bind(this)} 
-                        onFocus={this._onFocus.bind(this)}
-                        onBlur={this._onBlur.bind(this)}
                         colors={this.props.themeable.colors}
                         checked={this.state.value}
                         disabled={this.props.disabled}

@@ -4,8 +4,7 @@ import Input from '../../components/Input'
 import {Input as ThemeableInput } from '../../components'
 
 describe('Input', () => {
-    const themeable = {text: {inputText: '#d4d4d4'}}
-    const renderComponent = (props) => mount(<Input themeable={themeable} {...props} />)
+    const renderComponent = (props) => mount(<Input {...props} />)
     const renderThemeableComponent = (props) => mount(<ThemeableInput {...props} />)
     const sizes = ['xs', 'sm', 'md', 'lg', 'huge', 'massive']
     const keys = ['primary', 'info', 'success', 'warn', 'danger']
