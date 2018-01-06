@@ -1,6 +1,5 @@
 //@flow
 import {PureComponent} from 'react'
-import type {Meta} from 'types'
 
 // eslint-disable-next-line
 export default class<T,T> extends PureComponent<any, any>{
