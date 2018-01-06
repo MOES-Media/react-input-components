@@ -17,9 +17,11 @@ storiesOf('Input', module).add('Input', () => <div>
         <h4>Themed</h4>
         <table>
             <thead>
-                <th>default</th>
-                <th>disabled</th>
-                <th>block</th>
+                <tr>
+                    <th>default</th>
+                    <th>disabled</th>
+                    <th>block</th>
+                </tr>
             </thead>
             <tbody>
                 {themeKeys.map(key => {
@@ -35,6 +37,6 @@ storiesOf('Input', module).add('Input', () => <div>
         <h4>Sizes</h4>
         {sizes.map(size => {
             const props = {[size]: true}
-            return(<div><p><Input name={`${size}-input`} onChange={action('onChange')} placeholder={size} {...props} /></p></div>)
+            return(<div key={size}><p><Input name={`${size}-input`} onChange={action('onChange')} placeholder={size} {...props} /></p></div>)
         })}
     </div>)

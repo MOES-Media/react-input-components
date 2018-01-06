@@ -15,11 +15,13 @@
     "build-storybook": "NODE_PATH=./src build-storybook -s public"
   },
   "dependencies": {
+    "ionicons": "^3.0.0",
     "polished": "^1.9.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
-    "styled-components": "^2.4.0"
+    "styled-components": "^2.4.0",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.17",
