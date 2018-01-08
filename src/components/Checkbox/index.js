@@ -48,7 +48,7 @@ const Checkbox = styled.label`
         &:after{
             font-family: 'Ionicons';
             content: '\\f3ff';
-            color: ${props.colors.default};
+            color: ${props.colors.active};
             position: absolute;
             font-size: 17px;
             top: 0;
