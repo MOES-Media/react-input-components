@@ -22,6 +22,7 @@ const RelativeWrapper = styled.div`
     position: relative;
     min-width: 17px;
     vertical-align: baseline;
+    padding: 2px 5px 2px 0;
 `
 
 const Checkbox = styled.label`
@@ -35,7 +36,7 @@ const Checkbox = styled.label`
     &:before{
         position: absolute;
         left: 0;
-        top: 0;
+        top: 2px;
         content: '';
         width: 17px;
         height: 17px;
