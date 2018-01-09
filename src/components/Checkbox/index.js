@@ -52,7 +52,7 @@ const Checkbox = styled.label`
             color: ${props.colors.active};
             position: absolute;
             font-size: 17px;
-            top: 0;
+            top: 2px;
             left: 1px;
             width: 17px;
             height: 17px;
