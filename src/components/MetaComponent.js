@@ -2,7 +2,7 @@
 import {PureComponent} from 'react'
 
 // eslint-disable-next-line
-export default class<T,T> extends PureComponent<any, any>{
+export default class<Themable, T> extends PureComponent<any, any>{
 
     state={
         focus: false,
