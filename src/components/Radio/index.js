@@ -9,11 +9,15 @@ type RadioChoiceProps = {
     value: string,
     label: string,
     selectedValue?: string,
+    disabled?: boolean,
 }
 
 const RelativeWrapper = styled.div`
     display: inline-block;
     position: relative;
+    min-width: 17px;
+    vertical-align: baseline;
+    padding: 2px 5px 2px 0;
 `
 
 const Radio = styled.div`
@@ -37,7 +41,7 @@ const Choice = styled.label`
         transform: none;
         width: 15px;
         height: 15px;
-        top: 1px;
+        top: 3px;
         left: 0;
         border:1px solid ${props => props.hasFocus ? props.colors.active : props.colors.default};
     }
@@ -56,7 +60,7 @@ const Choice = styled.label`
             width: 15px;
             height: 15px;
             line-height: 15px;
-            top: 2px;
+            top: 4px;
             left: 0;
         }
     `}
@@ -74,7 +78,8 @@ class RadioChoice extends MetaComponent<RadioChoiceProps, Meta>{
                             hasFocus={this.state.focus}
                             checked={this.props.value === this.props.selectedValue}
                             onClick={this._onChange.bind(this)}
-                            colors={this.props.themeable.colors}>
+                            colors={this.props.themeable.colors}
+                            disabled={this.props.disabled}>
                         {this.props.label}
                     </Choice>
                 </RelativeWrapper>)
@@ -85,7 +90,8 @@ type RadioProps = {
     children: React$Element<typeof RadioChoice> | Array<React$Element<typeof RadioChoice>>,
     value?: string,
     onChange: Function,
-    themeable: Themeable
+    themeable: Themeable,
+    disabled?: boolean,
 }
 
 type RadioState = {
@@ -115,7 +121,10 @@ export default class<Themeable> extends PureComponent<RadioProps, RadioState> {
     }
 
     addPropsToChild(child: React$Element<typeof RadioChoice>){
-        return React.cloneElement(child, {themeable: this.props.themeable, onChange: this._onChoiceChange.bind(this), selectedValue: this.state.value})
+        return React.cloneElement(child, {themeable: this.props.themeable, 
+            onChange: this._onChoiceChange.bind(this), 
+            selectedValue: this.state.value,
+            disabled: this.props.disabled})
     }
 
     render(){
