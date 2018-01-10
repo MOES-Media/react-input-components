@@ -81,7 +81,9 @@ class RadioChoice extends MetaComponent<RadioChoiceProps, Meta>{
                             checked={this.props.value === this.props.selectedValue}
                             onClick={this._onChange.bind(this)}
                             colors={this.props.themeable.colors}
-                            disabled={this.props.disabled}>
+                            disabled={this.props.disabled}
+                            onBlur={this._onBlur.bind(this)}
+                            onFocus={this._onFocus.bind(this)}>
                         {this.props.label}
                     </Choice>
                 </RelativeWrapper>)
@@ -108,7 +110,11 @@ export default class<Themeable> extends PureComponent<RadioProps, RadioState> {
     state = this.getDefaultState()
 
     static defaultProps = {
-        value: ''
+        value: false,
+    }
+
+    componentWillUpdate(nextProps: RadioProps, nextState: RadioState){
+        this.state.value !== nextState.value && this.props.onChange && this.props.onChange(nextState.value)
     }
 
     getDefaultState(){
@@ -117,10 +123,6 @@ export default class<Themeable> extends PureComponent<RadioProps, RadioState> {
 
     _onChoiceChange(value: string){
         this.setState({value})   
-    }
-
-    _onChange(){
-        this.props.onChange && this.props.onChange(this.state.value)
     }
 
     addPropsToChild(child: React$Element<typeof RadioChoice>, props?: Object){
@@ -133,9 +135,9 @@ export default class<Themeable> extends PureComponent<RadioProps, RadioState> {
     }
 
     render(){
+        console.log(this.props)
         return(<Radio block={this.props.block}>
-                <input type="hidden" value={this.state.value} onChange={this._onChange.bind(this)} />
-                {Array.isArray(this.props.children) ? this.props.children.map((child, index )=> this.addPropsToChild(child, {key: index})) : this.addPropsToChild(this.props.children)}
+            {Array.isArray(this.props.children) ? this.props.children.map((child, index )=> this.addPropsToChild(child, {key: index})) : this.addPropsToChild(this.props.children)}
             </Radio>)
     }
 }

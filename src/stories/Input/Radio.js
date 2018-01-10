@@ -9,14 +9,14 @@ export default () => {
 
     return(<div>
             <h4>Default</h4>
-            <RadioGroup>
+            <RadioGroup onChange={action('radio')}>
                 <Radio.Choice label="default radio choice" value="test" />
                 <Radio.Choice label="default radio choice 2" value="test2" />
             </RadioGroup>
-            <RadioGroup disabled>
+            <RadioGroup disabled onChange={action('radio')}>
                 <Radio.Choice label="default disabled radio choice" value="test" />
             </RadioGroup>
-            <RadioGroup block>
+            <RadioGroup block onChange={action('radio')}>
                 <Radio.Choice label="default block radio choice" value="test-block" />
                 <Radio.Choice label="default block radio choice 2" value="test-block-2" />
             </RadioGroup>
@@ -36,8 +36,8 @@ export default () => {
                 {themeKeys.map(key => {
                     const props = {[key]: true}
                     return (<tr key={key}>
-                        <td width="50%"><RadioGroup {...props}><Radio.Choice {...props} value={key} label={`${key} radio`}/></RadioGroup></td>
-                        <td width="50%"><RadioGroup disabled {...props}><Radio.Choice {...props} value={key} label={`${key} radio`}/></RadioGroup></td>
+                        <td width="50%"><RadioGroup {...props} onChange={action('radio')}><Radio.Choice {...props} value={key} label={`${key} radio`}/></RadioGroup></td>
+                        <td width="50%"><RadioGroup disabled {...props} onChange={action('radio')}><Radio.Choice {...props} value={key} label={`${key} radio`}/></RadioGroup></td>
                     </tr>)})}
             </tbody>
         </table>

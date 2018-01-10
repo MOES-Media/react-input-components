@@ -45,7 +45,7 @@ describe('Checkbox', () => {
         const mockFunctions = {onChange: () => ({})}
         spyOn(mockFunctions, 'onChange')
         const renderedComponent = renderComponent({label: "test", onChange: mockFunctions.onChange})
-        renderedComponent.find('input').simulate('change', {target: {value: true}})
+        renderedComponent.simulate('click')
         expect(mockFunctions.onChange).toHaveBeenCalled()
         expect(mockFunctions.onChange).toHaveBeenCalledWith(true)
     })

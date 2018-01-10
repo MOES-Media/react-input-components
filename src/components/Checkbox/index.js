@@ -73,12 +73,12 @@ export default class extends MetaComponent<CheckboxProps, CheckboxState>{
         return Object.assign({}, this.state, {value: this.props.checked})
     }
 
-    _onClick(){
-        this.setState({value: !this.state.value})
+    componentWillUpdate(nextProps: CheckboxProps, nextState: CheckboxState){
+        this.state.value !== nextState.value && this.props.onChange && this.props.onChange(nextState.value)
     }
 
-    _onChange({target} : {target: HTMLInputElement}){
-        this.props.onChange && this.props.onChange(target.value)
+    _onClick(){
+        this.setState({value: !this.state.value})
     }
 
     render(){
@@ -86,7 +86,6 @@ export default class extends MetaComponent<CheckboxProps, CheckboxState>{
                     onClick={this._onClick.bind(this)} 
                     onFocus={this._onFocus.bind(this)}
                     onBlur={this._onBlur.bind(this)}>
-            <input type="hidden" name={this.props.name} value={this.state.value} onChange={this._onChange.bind(this)}/>
             <Checkbox hasFocus={this.state.focus}
                         colors={this.props.themeable.colors}
                         checked={this.state.value}

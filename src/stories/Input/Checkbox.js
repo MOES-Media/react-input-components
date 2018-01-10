@@ -8,10 +8,10 @@ export default () => {
     const themeKeys = ['primary', 'info', 'success', 'warn', 'danger']
     return(<div>
         <h4>Default</h4>
-        <Checkbox label="default Checkbox"/>&nbsp;<Checkbox disabled label="disabled Checkbox"/>
+        <Checkbox label="default Checkbox" onChange={action('checked')}/>&nbsp;<Checkbox disabled label="disabled Checkbox"/>
         <div>
-            <Checkbox block label="default block Checkbox"/>
-            <Checkbox block label="default block Checkbox"/>
+            <Checkbox block label="default block Checkbox" onChange={action('checked')}/>
+            <Checkbox block label="default block Checkbox" onChange={action('checked')}/>
         </div>
         <h4>Themed</h4>
         <table>
@@ -29,8 +29,8 @@ export default () => {
                 {themeKeys.map(key => {
                     const props = {[key]: true}
                     return (<tr key={key}>
-                        <td width="50%"><Checkbox {...props} label={`${key} checkbox`}/></td>
-                        <td width="50%"><Checkbox disabled {...props} label={`${key} checkbox disabled`}/></td>
+                        <td width="50%"><Checkbox {...props} label={`${key} checkbox`} onChange={action('checked')}/></td>
+                        <td width="50%"><Checkbox disabled {...props} label={`${key} checkbox disabled`} onChange={action('checked')}/></td>
                     </tr>)})}
             </tbody>
         </table>
