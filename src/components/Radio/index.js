@@ -30,10 +30,6 @@ const Choice = styled.label`
 
     &:before{
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 17px;
-        height: 17px;
         content: '';
         background: #fff;
         border-radius: 50%;
@@ -43,8 +39,27 @@ const Choice = styled.label`
         height: 15px;
         top: 1px;
         left: 0;
-        border:1px solid ${props => props.hasFocus ? props.colors.active : props.colors.default}
+        border:1px solid ${props => props.hasFocus ? props.colors.active : props.colors.default};
     }
+
+    ${props => props.checked && `
+        &:after{
+            position: absolute;
+            font-size: 20px;
+            text-align: center;
+            opacity: 0;
+            color: ${props.hasFocus ? props.colors.active : props.colors.default};
+            opacity: 1;
+            border: none;
+            font-family: Ionicons;
+            content: '\\f1f7';
+            width: 15px;
+            height: 15px;
+            line-height: 15px;
+            top: 2px;
+            left: 0;
+        }
+    `}
 `
 
 class RadioChoice extends MetaComponent<RadioChoiceProps, Meta>{
@@ -99,11 +114,14 @@ export default class<Themeable> extends PureComponent<RadioProps, RadioState> {
         this.props.onChange && this.props.onChange(this.state.value)
     }
 
+    addPropsToChild(child: React$Element<typeof RadioChoice>){
+        return React.cloneElement(child, {themeable: this.props.themeable, onChange: this._onChoiceChange.bind(this), selectedValue: this.state.value})
+    }
+
     render(){
         return(<Radio>
                 <input type="hidden" value={this.state.value} onChange={this._onChange.bind(this)} />
-                {Array.isArray(this.props.children) ? this.props.children.map(child => React.cloneElement(child, {themeable: this.props.themeable,onChange: this._onChoiceChange.bind(this)})) 
-                    : React.cloneElement(this.props.children, {themeable: this.props.themeable,onChange: this._onChoiceChange.bind(this)})  }
+                {Array.isArray(this.props.children) ? this.props.children.map(child => this.addPropsToChild(child)) : this.addPropsToChild(this.props.children)}
             </Radio>)
     }
 }
