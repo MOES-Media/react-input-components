@@ -83,7 +83,9 @@ class RadioChoice extends MetaComponent<RadioChoiceProps, Meta>{
                             colors={this.props.themeable.colors}
                             disabled={this.props.disabled}
                             onBlur={this._onBlur.bind(this)}
-                            onFocus={this._onFocus.bind(this)}>
+                            onFocus={this._onFocus.bind(this)}
+                            block={this.props.block}
+                            tabIndex="0">
                         {this.props.label}
                     </Choice>
                 </RelativeWrapper>)
@@ -135,7 +137,6 @@ export default class<Themeable> extends PureComponent<RadioProps, RadioState> {
     }
 
     render(){
-        console.log(this.props)
         return(<Radio block={this.props.block}>
             {Array.isArray(this.props.children) ? this.props.children.map((child, index )=> this.addPropsToChild(child, {key: index})) : this.addPropsToChild(this.props.children)}
             </Radio>)
