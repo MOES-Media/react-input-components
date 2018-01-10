@@ -18,10 +18,11 @@ const RelativeWrapper = styled.div`
     min-width: 17px;
     vertical-align: baseline;
     padding: 2px 5px 2px 0;
+    ${props => props.block && 'display: block; width: 100%;'}
 `
 
 const Radio = styled.div`
-
+    display: ${props => props.block ? 'block' : 'inline-block'};
 `
 
 const Choice = styled.label`
@@ -31,6 +32,7 @@ const Choice = styled.label`
     padding-left: 26px;
     outline: 0;
     ${props => props.disabled && 'pointer-events: none; opacity: .45;'}
+    ${props => props.block && 'display: block; width: 100%;'}
 
     &:before{
         position: absolute;
@@ -73,7 +75,7 @@ class RadioChoice extends MetaComponent<RadioChoiceProps, Meta>{
     }
 
     render(){
-        return(<RelativeWrapper>
+        return(<RelativeWrapper block={this.props.block}>
                     <Choice value={this.props.value}
                             hasFocus={this.state.focus}
                             checked={this.props.value === this.props.selectedValue}
@@ -92,6 +94,7 @@ type RadioProps = {
     onChange: Function,
     themeable: Themeable,
     disabled?: boolean,
+    block?: boolean,
 }
 
 type RadioState = {
@@ -105,7 +108,7 @@ export default class<Themeable> extends PureComponent<RadioProps, RadioState> {
     state = this.getDefaultState()
 
     static defaultProps = {
-        value: false
+        value: ''
     }
 
     getDefaultState(){
@@ -120,17 +123,19 @@ export default class<Themeable> extends PureComponent<RadioProps, RadioState> {
         this.props.onChange && this.props.onChange(this.state.value)
     }
 
-    addPropsToChild(child: React$Element<typeof RadioChoice>){
-        return React.cloneElement(child, {themeable: this.props.themeable, 
+    addPropsToChild(child: React$Element<typeof RadioChoice>, props?: Object){
+        return React.cloneElement(child, {...props, 
+            themeable: this.props.themeable, 
             onChange: this._onChoiceChange.bind(this), 
             selectedValue: this.state.value,
-            disabled: this.props.disabled})
+            disabled: this.props.disabled,
+            block: this.props.block})
     }
 
     render(){
-        return(<Radio>
+        return(<Radio block={this.props.block}>
                 <input type="hidden" value={this.state.value} onChange={this._onChange.bind(this)} />
-                {Array.isArray(this.props.children) ? this.props.children.map(child => this.addPropsToChild(child)) : this.addPropsToChild(this.props.children)}
+                {Array.isArray(this.props.children) ? this.props.children.map((child, index )=> this.addPropsToChild(child, {key: index})) : this.addPropsToChild(this.props.children)}
             </Radio>)
     }
 }
