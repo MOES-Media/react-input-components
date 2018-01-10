@@ -20,7 +20,7 @@ describe('Radio', () => {
     })
 
     it('should handle focus events', () => {
-        const renderedComponent = renderedChoiceComponent({label: "test", value:"test", selectedValue:"test", onChange: () => ({})})
+        const renderedComponent = renderedChoiceComponent({label: "test", value:"test", selectedValue:"test"})
         expect(renderedComponent.state().focus).toBe(false)
         expect(renderedComponent.state().touched).toBe(false)
         renderedComponent.find('label').simulate('focus')

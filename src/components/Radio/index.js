@@ -1,7 +1,8 @@
 //@flow
-import React, {PureComponent} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import MetaComponent from 'components/MetaComponent'
+import ChangeableMetaComponent from 'components/ChangeableMetaComponent'
 import type {Meta, Themeable} from 'types'
 
 type RadioChoiceProps = {
@@ -106,17 +107,13 @@ type RadioState = {
 }
 
 // eslint-disable-next-line
-export default class<Themeable> extends PureComponent<RadioProps, RadioState> {
+export default class<Themeable> extends ChangeableMetaComponent<RadioProps, RadioState> {
 
     static Choice = RadioChoice
     state = this.getDefaultState()
 
     static defaultProps = {
         value: false,
-    }
-
-    componentWillUpdate(nextProps: RadioProps, nextState: RadioState){
-        this.state.value !== nextState.value && this.props.onChange && this.props.onChange(nextState.value)
     }
 
     getDefaultState(){

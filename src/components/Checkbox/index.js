@@ -1,6 +1,6 @@
 //@flow
 import React from 'react'
-import MetaComponent from 'components/MetaComponent'
+import ChangeableMetaComponent from 'components/ChangeableMetaComponent'
 import styled from 'styled-components'
 import type {Meta, Themeable} from 'types'
 
@@ -61,7 +61,7 @@ const Checkbox = styled.label`
     `}
 `
 
-export default class extends MetaComponent<CheckboxProps, CheckboxState>{
+export default class extends ChangeableMetaComponent<CheckboxProps, CheckboxState>{
 
     static defaultProps = {
         checked: false,
@@ -73,18 +73,14 @@ export default class extends MetaComponent<CheckboxProps, CheckboxState>{
         return Object.assign({}, this.state, {value: this.props.checked})
     }
 
-    componentWillUpdate(nextProps: CheckboxProps, nextState: CheckboxState){
-        this.state.value !== nextState.value && this.props.onChange && this.props.onChange(nextState.value)
-    }
-
     _onClick(){
         this.setState({value: !this.state.value})
     }
 
     render(){
         return(<RelativeWrapper block={this.props.block} 
-                    onClick={this._onClick.bind(this)} 
                     onFocus={this._onFocus.bind(this)}
+                    onClick={this._onClick.bind(this)} 
                     onBlur={this._onBlur.bind(this)}>
             <Checkbox hasFocus={this.state.focus}
                         colors={this.props.themeable.colors}
