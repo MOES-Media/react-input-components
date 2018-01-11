@@ -10,7 +10,7 @@ const Select = styled.div`
     box-shadow: none;
     transition: box-shadow .1s ease,width .1s ease;
     color: ${props => props.hasFocus ? 'rgba(0,0,0, .95)' : 'rgba(0,0,0, .87)'};
-    border-radius: 3px;
+    border-radius: ${props => props.isOpen ? '3px 3px 0 0' : '3px'};
     padding: 11px 30px 11px 14px;
     border: 1px solid ${props => props.hasFocus ? props.colors.active : props.colors.default};
     display: ${props => props.block ? 'block' : 'inline-block'};
@@ -21,6 +21,7 @@ const Select = styled.div`
     line-height: 1em;
     word-wrap: break-word;
     cursor: pointer;
+    ${props => props.isOpen && 'border-bottom: none;'}
 
     &:hover{
         border-color: ${props => props.colors.active};
@@ -41,7 +42,7 @@ const Chevron = styled.i`
 
     &:before{
         font-style: normal;
-        content: '${props => props.hasFocus ? '\\f3d8' : '\\f3d0'}';
+        content: '${props => props.isOpen ? '\\f3d8' : '\\f3d0'}';
         font-family: Ionicons;
     }
 `
@@ -56,18 +57,43 @@ type SelectProps = {
     placeholder: string,
 }
 
+type SelectState =  Changeable & {
+    isOpen: boolean,
+}
+
 export default class extends ChangeableMetaComponent<SelectProps, Changeable>{
+
+    state = this.getDefaultState()
+
+    getDefaultState(){
+        return Object.assign({}, this.state, {isOpen: false})
+    }
+
+    _handleFocus(){
+        this._onFocus()
+        this.setState({isOpen: true})
+    }
+
+    _handleBlur(){
+        this._onBlur()
+        this.setState({isOpen: false})
+    }
+
+    _handleChevronClick(e: Event){
+        this.setState({isOpen: !this.state.isOpen})
+    }
 
     render(){
         return(<Select tabIndex="0"
                     hasFocus={this.state.focus}
-                    onFocus={this._onFocus.bind(this)}
-                    onBlur={this._onBlur.bind(this)}
-                    colors={this.props.themeable.colors}>
+                    onFocus={this._handleFocus.bind(this)}
+                    onBlur={this._handleBlur.bind(this)}
+                    colors={this.props.themeable.colors}
+                    isOpen={this.state.isOpen}>
             <Value isValueSet={this.state.value}>
                 {this.state.value ? this.state.value : this.props.placeholder}
             </Value>
-            <Chevron hasFocus={this.state.focus}/>
+            <Chevron onMouseDown={this._handleChevronClick.bind(this)} isOpen={this.state.isOpen}/>
     </Select>)
     }
 }
