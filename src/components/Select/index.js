@@ -101,15 +101,6 @@ const Option = styled.div`
     }
 `
 
-type SelectProps = {
-    themeable: Themeable,
-    placeholder: string,
-}
-
-type SelectState =  Changeable & {
-    isOpen: boolean,
-}
-
 class SelectOption extends PureComponent<any, any>{
     
     render(){
@@ -117,7 +108,17 @@ class SelectOption extends PureComponent<any, any>{
     }
 }
 
-export default class extends ChangeableMetaComponent<SelectProps, Changeable>{
+type SelectProps = {
+    themeable: Themeable,
+    placeholder: string,
+    children: React$Element<typeof SelectOption> | Array<React$Element<typeof SelectOption>>
+}
+
+type SelectState =  Changeable & {
+    isOpen: boolean,
+}
+
+export default class extends ChangeableMetaComponent<SelectProps, SelectState>{
 
     state = this.getDefaultState()
 
