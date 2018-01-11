@@ -1,5 +1,5 @@
 //@flow
-import React from 'react'
+import React, {PureComponent} from 'react'
 import ChangeableMetaComponent from 'components/ChangeableMetaComponent'
 import styled from 'styled-components'
 import type {Themeable, Changeable} from 'types'
@@ -52,6 +52,55 @@ const Value = styled.div`
     color: ${props => props.isValueSet ? 'rgba(0,0,0,.87)' : 'rgba(191,191,191,.87)'};
 `
 
+const OptionList = styled.div`
+    position: absolute;
+    top: 100%;
+    left: 0;
+    cursor: auto;
+    display: ${props => props.isOpen ? 'block' : 'none'};
+    border-radius: 0 0 3px 3px;
+    width: 100%;
+    min-width: 100%;
+    transition: opacity .1s ease;
+    margin: 0 -1px;
+    outline: 0;
+    border-top-width: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    will-change: transform,opacity;
+    z-index: 11;
+    border: 1px solid ${props => props.colors.active};
+    text-align: left;
+    padding: 0 0;
+    font-size: 1em;
+    background: #fff;
+    border-top: none;
+`
+
+const Option = styled.div`
+    padding: 11px 16px;
+    white-space: normal;
+    word-wrap: normal;
+    border-top-width: 0;
+    position: relative;
+    cursor: pointer;
+    border: none;
+    height: auto;
+    text-align: left;
+    line-height: 1em;
+    color: rgba(0,0,0, .87);
+    font-size: 1em;
+    text-transform: none;
+    box-shadow: none;
+    font-weight: ${props => props.selected ? '700': '400'};
+    border-top: 1px solid #fafafa;
+    
+    &:hover{
+        background: rgba(0,0,0,.05);
+        z-index: 13;
+    }
+`
+
 type SelectProps = {
     themeable: Themeable,
     placeholder: string,
@@ -59,6 +108,13 @@ type SelectProps = {
 
 type SelectState =  Changeable & {
     isOpen: boolean,
+}
+
+class SelectOption extends PureComponent<any, any>{
+    
+    render(){
+        return(<Option>{this.props.label}</Option>)
+    }
 }
 
 export default class extends ChangeableMetaComponent<SelectProps, Changeable>{
@@ -93,7 +149,17 @@ export default class extends ChangeableMetaComponent<SelectProps, Changeable>{
             <Value isValueSet={this.state.value}>
                 {this.state.value ? this.state.value : this.props.placeholder}
             </Value>
-            <Chevron onMouseDown={this._handleChevronClick.bind(this)} isOpen={this.state.isOpen}/>
+            <Chevron onMouseDown={this._handleChevronClick.bind(this)} 
+                        isOpen={this.state.isOpen}/>
+            <OptionList isOpen={this.state.isOpen} 
+                        hasFocus={this.state.focus} 
+                        colors={this.props.themeable.colors}>
+                {this.props.children}
+            </OptionList>
     </Select>)
     }
+}
+
+export {
+    SelectOption as Option
 }

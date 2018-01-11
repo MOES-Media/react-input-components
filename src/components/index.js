@@ -6,6 +6,7 @@ import {default as Checkbox} from 'components/Checkbox'
 import {default as RadioGroup } from 'components/Radio'
 import {default as Select } from 'components/Select'
 import * as Radio from 'components/Radio'
+import {Option as SelectOption} from 'components/Select'
 
 const themedButton = themeable(ButtonComponent)
 const themedInput = themeable(Input, false)
@@ -20,4 +21,5 @@ export {
     themedRadio as RadioGroup,
     themedSelect as Select,
     Radio,
+    SelectOption
 }

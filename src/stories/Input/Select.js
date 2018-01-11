@@ -2,10 +2,13 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { Select } from 'components'
+import { Select, SelectOption } from 'components'
 
 export default () => {
     const themeKeys = ['primary', 'info', 'success', 'warn', 'danger'] 
     
-    return(<Select placeholder='test'/>)
+    return(<Select placeholder='test'>
+            <SelectOption label="test" />
+            <SelectOption label="test" />
+        </Select>)
 }
