@@ -2,7 +2,7 @@
 import React from 'react'
 import ChangeableMetaComponent from 'components/ChangeableMetaComponent'
 import styled from 'styled-components'
-import type {Changeable} from 'types'
+import type {Themeable, Changeable} from 'types'
 
 const Select = styled.div`
     position: relative;
@@ -51,7 +51,12 @@ const Value = styled.div`
     color: ${props => props.isValueSet ? 'rgba(0,0,0,.87)' : 'rgba(191,191,191,.87)'};
 `
 
-export default class extends ChangeableMetaComponent<any, Changeable>{
+type SelectProps = {
+    themeable: Themeable,
+    placeholder: string,
+}
+
+export default class extends ChangeableMetaComponent<SelectProps, Changeable>{
 
     render(){
         return(<Select tabIndex="0"
