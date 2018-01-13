@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions'
 import { Input } from 'components'
 import checkbox from './Checkbox'
 import radio from './Radio'
+import select from 'stories/Input/Select'
 
 const themeKeys = ['primary', 'info', 'success', 'warn', 'danger']
 const sizes = ['xs', 'sm', 'md', 'lg', 'huge', 'massive']
@@ -41,4 +42,6 @@ storiesOf('Input', module).add('Input', () => <div>
             const props = {[size]: true}
             return(<div key={size}><p><Input name={`${size}-input`} onChange={action('onChange')} placeholder={size} {...props} /></p></div>)
         })}
-    </div>).add('Checkbox', checkbox).add('Radio', radio)
+    </div>).add('Checkbox', checkbox)
+        .add('Radio', radio)
+        .add('Select', select)
