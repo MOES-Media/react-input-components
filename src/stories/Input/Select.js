@@ -38,12 +38,12 @@ export default () => {
                     const props = {[key]: true}
                     return <tr index={key}>
                                 <td>
-                                    <Select {...props} placeholder='default select' 
+                                    <Select {...props} placeholder={`${key} select`}
                                         options={options} onChange={action('select')} 
                                         withEmptyOption/>
                                 </td>
                                 <td>
-                                    <Select disabled {...props} placeholder='default select' 
+                                    <Select disabled {...props} placeholder={`${key} disabled select`}
                                         options={options} onChange={action('select')} 
                                         withEmptyOption/>
                                 </td>

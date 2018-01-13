@@ -21,7 +21,7 @@ const Select = styled.div`
     word-wrap: break-word;
     cursor: pointer;
     ${props => props.isOpen && 'border-bottom: none;'}
-    ${props => props.disabled && 'pointer-events: none;'}
+    ${props => props.disabled && 'pointer-events: none; opacity: .65;' }
     ${props => props.block && 'display: block; width: 100%;'}
     box-sizing: border-box;
     background: #fff;
