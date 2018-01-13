@@ -7,7 +7,7 @@ import type {Themeable, Changeable} from 'types'
 const Select = styled.div`
     position: relative;
     text-align: left;
-    box-shadow: none;
+    box-shadow: ${props => props.hasFocus ? '0 2px 3px 0 rgba(34,36,38,.15)' : 'none'};
     transition: box-shadow .1s ease,width .1s ease;
     color: ${props => props.hasFocus ? 'rgba(0,0,0, .95)' : 'rgba(0,0,0, .87)'};
     border-radius: ${props => props.isOpen ? '3px 3px 0 0' : '3px'};
@@ -16,12 +16,15 @@ const Select = styled.div`
     display: ${props => props.block ? 'block' : 'inline-block'};
     outline: 0;
     min-width: 150px;
-    transform: rotateZ(0);
     white-space: normal;
     line-height: 1em;
     word-wrap: break-word;
     cursor: pointer;
     ${props => props.isOpen && 'border-bottom: none;'}
+    ${props => props.disabled && 'pointer-events: none;'}
+    ${props => props.block && 'display: block; width: 100%;'}
+    box-sizing: border-box;
+    background: #fff;
 
     &:hover{
         border-color: ${props => props.colors.active};
@@ -35,10 +38,10 @@ const Chevron = styled.i`
     right: 12px;
     top: 10px;
     line-height: 14px;
-    z-index: 3;
     cursor: pointer;
     width: auto;
     height: auto;
+    opacity: .99;
 
     &:before{
         font-style: normal;
@@ -57,17 +60,19 @@ const OptionList = styled.div`
     top: 100%;
     left: 0;
     cursor: auto;
+    max-height: 160px;
+    box-shadow: ${props => props.hasFocus ? '0 2px 3px 0 rgba(34,36,38,.15)' : 'none'};
     display: ${props => props.isOpen ? 'block' : 'none'};
+    ${props => props.isOpen && 'visibility: visible;'}
     border-radius: 0 0 3px 3px;
     width: 100%;
     min-width: 100%;
-    transition: opacity .1s ease;
+    transition: box-shadow .1s ease,width .1s ease, opacity .1s ease;
     margin: 0 -1px;
     outline: 0;
     border-top-width: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    will-change: transform,opacity;
     z-index: 11;
     border: 1px solid ${props => props.colors.active};
     text-align: left;
@@ -75,18 +80,25 @@ const OptionList = styled.div`
     font-size: 1em;
     background: #fff;
     border-top: none;
+    will-change: transform,opacity;
+
+    animation-iteration-count: 1;
+    animation-duration: .3s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
 `
 
 const Option = styled.div`
+    min-height: 1em;
     padding: 11px 16px;
     white-space: normal;
     word-wrap: normal;
     border-top-width: 0;
-    position: relative;
     cursor: pointer;
     border: none;
     height: auto;
     text-align: left;
+    z-index: 12 ;
     line-height: 1em;
     color: rgba(0,0,0, .87);
     font-size: 1em;
@@ -94,6 +106,7 @@ const Option = styled.div`
     box-shadow: none;
     font-weight: ${props => props.selected ? '700': '400'};
     border-top: 1px solid #fafafa;
+    background: ${props => props.selected ? 'rgba(0,0,0,.05)' : '#fff'};
     
     &:hover{
         background: rgba(0,0,0,.05);
@@ -104,14 +117,17 @@ const Option = styled.div`
 class SelectOption extends PureComponent<any, any>{
     
     render(){
-        return(<Option>{this.props.label}</Option>)
+        return(<Option selected={this.props.selected} onClick={this.props.onClick.bind(null, this.props.value)}>{this.props.label}</Option>)
     }
 }
 
 type SelectProps = {
     themeable: Themeable,
     placeholder: string,
-    children: React$Element<typeof SelectOption> | Array<React$Element<typeof SelectOption>>
+    options: Array<{value: string, label:string}>,
+    withEmptyOption?: boolean,
+    disabled?: boolean,
+    block?: boolean,
 }
 
 type SelectState =  Changeable & {
@@ -136,12 +152,18 @@ export default class extends ChangeableMetaComponent<SelectProps, SelectState>{
         this.setState({isOpen: false})
     }
 
-    _handleChevronClick(e: Event){
+    _handleChevronClick(){
         this.setState({isOpen: !this.state.isOpen})
+    }
+
+    _onOptionSelect(value: string){
+        this.setState({value, isOpen: false})
     }
 
     render(){
         return(<Select tabIndex="0"
+                    disabled={this.props.disabled}
+                    block={this.props.block}
                     hasFocus={this.state.focus}
                     onFocus={this._handleFocus.bind(this)}
                     onBlur={this._handleBlur.bind(this)}
@@ -155,12 +177,9 @@ export default class extends ChangeableMetaComponent<SelectProps, SelectState>{
             <OptionList isOpen={this.state.isOpen} 
                         hasFocus={this.state.focus} 
                         colors={this.props.themeable.colors}>
-                {this.props.children}
+                {this.props.withEmptyOption && <SelectOption onClick={this._onOptionSelect.bind(this)} label=" " value={undefined} />}
+                {this.props.options.map((option: {value: string, label: string}, index: number) => <SelectOption selected={this.state.value === option.value} key={index} onClick={this._onOptionSelect.bind(this)} value={option.value} label={option.label} />)}
             </OptionList>
     </Select>)
     }
-}
-
-export {
-    SelectOption as Option
 }
