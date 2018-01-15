@@ -19,6 +19,7 @@ type InputProps = {
     lg?: boolean,
     huge?: boolean,
     massive?: boolean,
+    value?: string
 }
 
 const Input = styled.input.attrs({
@@ -60,10 +61,13 @@ export default class extends MetaComponent<InputProps, Meta>{
 
     static defaultProps = {
         type: "text",
+        value: false,
     }
 
-    _onChange({target}: {target: HTMLInputElement}){
-        !this.props.disabled && this.props.onChange && this.props.onChange(target.value)
+    state = this.getDefaultState()
+
+    getDefaultState(){
+        return Object.assign({}, this.state, {value: this.props.value})
     }
 
     render(){

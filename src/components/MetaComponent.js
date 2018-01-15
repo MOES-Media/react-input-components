@@ -6,7 +6,12 @@ export default class<Themable, T> extends PureComponent<any, any>{
 
     state={
         focus: false,
-        touched: false
+        touched: false,
+        value: undefined
+    }
+
+    _onChange({target}: {target: HTMLInputElement}){
+        !this.props.disabled && this.props.onChange && this.props.onChange(target.value)
     }
 
     _onFocus(){
