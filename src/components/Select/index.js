@@ -25,6 +25,7 @@ const Select = styled.div`
     ${props => props.block && 'display: block; width: 100%;'}
     box-sizing: border-box;
     background: #fff;
+    font-size: 14px;
 
     &:hover{
         border-color: ${props => props.colors.active};

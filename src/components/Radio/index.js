@@ -34,6 +34,7 @@ const Choice = styled.label`
     outline: 0;
     ${props => props.disabled && 'pointer-events: none; opacity: .45;'}
     ${props => props.block && 'display: block; width: 100%;'}
+    font-size: 14px;
 
     &:before{
         position: absolute;
@@ -106,8 +107,7 @@ type RadioState = {
     value: string,
 }
 
-// eslint-disable-next-line
-export default class<Themeable> extends ChangeableMetaComponent<RadioProps, RadioState> {
+export default class extends ChangeableMetaComponent<RadioProps, RadioState> {
 
     static Choice = RadioChoice
     state = this.getDefaultState()
