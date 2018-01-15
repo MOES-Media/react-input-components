@@ -29,7 +29,7 @@ const Input = styled.input.attrs({
 })`
     overflow: visible;
     -webkit-appearance: none;
-    box-shadow: none;
+    box-shadow: ${props => props.hasFocus ? '0 2px 3px 0 rgba(34,36,38,.15)' : 'none'};
     transition: box-shadow .1s ease,border-color .1s ease;
     border-radius: 3px;
     color: ${props => props.hasFocus ? 'rgba(0,0,0,.87)' : 'rgba(0,0,0,.8)'};
@@ -61,7 +61,6 @@ export default class extends MetaComponent<InputProps, Meta>{
 
     static defaultProps = {
         type: "text",
-        value: false,
     }
 
     state = this.getDefaultState()

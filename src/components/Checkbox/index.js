@@ -32,6 +32,7 @@ const Checkbox = styled.label`
     padding-left: 26px;
     outline: 0;
     ${props => props.disabled && 'pointer-events: none; opacity: .45;'}
+    font-size: 14px;
 
     &:before{
         position: absolute;

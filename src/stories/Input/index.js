@@ -6,6 +6,7 @@ import { Input } from 'components'
 import checkbox from './Checkbox'
 import radio from './Radio'
 import select from 'stories/Input/Select'
+import textarea from 'stories/Input/Textarea'
 
 const themeKeys = ['primary', 'info', 'success', 'warn', 'danger']
 const sizes = ['xs', 'sm', 'md', 'lg', 'huge', 'massive']
@@ -45,3 +46,4 @@ storiesOf('Input', module).add('Input', () => <div>
     </div>).add('Checkbox', checkbox)
         .add('Radio', radio)
         .add('Select', select)
+        .add('Textarea', textarea)
