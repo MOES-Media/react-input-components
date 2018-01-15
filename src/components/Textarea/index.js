@@ -20,7 +20,7 @@ const Textarea = styled.textarea.attrs({placeholder: props => props.placeholder}
     padding: 14px 11px;
     box-sizing: border-box;
     color: ${props => props.hasFocus ? 'rgba(0,0,0,.87)' : 'rgba(0,0,0,.8)'};
-    border: 1px solid ${props => props.colors ? props.hasFocus ? props.colors.active : props.colors.default : props.hasFocus ? '#85b7d9' : 'rgba(34,36,38,.15)'};
+    border: 1px solid ${props => props.hasFocus ? props.colors.active : props.colors.default};
     box-shadow: ${props => props.hasFocus ? '0 2px 3px 0 rgba(34,36,38,.15)' : 'none'};
     transition: box-shadow .1s ease,width .1s ease;
     outline: 0;
@@ -58,6 +58,8 @@ export default class extends MetaComponent<TextAreaProps, Meta>{
                     block={this.props.block}
                     short={this.props.short}
                     long={this.props.long}
-                    placeholder={this.props.placeholder}>{this.state.value}</Textarea>) 
+                    placeholder={this.props.placeholder}>
+                    {this.state.value
+                }</Textarea>) 
     }
 }

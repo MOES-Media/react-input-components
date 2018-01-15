@@ -23,14 +23,18 @@ export default () => {
                     <th>
                         disabled
                     </th>
+                    <th>
+                        checked
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {themeKeys.map(key => {
                     const props = {[key]: true}
                     return (<tr key={key}>
-                        <td width="50%"><Checkbox {...props} label={`${key} checkbox`} onChange={action('checked')}/></td>
-                        <td width="50%"><Checkbox disabled {...props} label={`${key} checkbox disabled`} onChange={action('checked')}/></td>
+                        <td><Checkbox {...props} label={`${key} checkbox`} onChange={action('checked')}/></td>
+                        <td><Checkbox disabled {...props} label={`${key} checkbox disabled`} onChange={action('checked')}/></td>
+                        <td><Checkbox checked {...props} label={`${key} checkbox`} onChange={action('checked')}/></td>
                     </tr>)})}
             </tbody>
         </table>
