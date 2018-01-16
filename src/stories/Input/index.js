@@ -16,7 +16,7 @@ storiesOf('Input', module).add('Input', () => <div>
         <Input name="default-input" onChange={action('onChange')} placeholder="Default input" /> &nbsp;
         <Input name="default-disabled-input" onChange={action('onChange')} value="Default disabled input" disabled /> &nbsp;
         <div style={{width: '25%', display: 'inline-block'}}>
-            <Input name="default-block-input" onChange={action('onChange')} placeholder="Default block input" block />
+            <Input name="default-block-input" type="password" onChange={action('onChange')} placeholder="Default block input" block />
         </div>
         <h4>Themed</h4>
         <table>
