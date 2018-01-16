@@ -1,7 +1,8 @@
 {
   "name": "react-input-components",
-  "version": "0.1.1-3",
+  "version": "0.1.1-4",
   "homepage": "https://MOES-Media.github.io/react-input-components/",
+  "main": "src/index.js",
   "scripts": {
     "start": "NODE_PATH=./src react-scripts start",
     "build": "NODE_PATH=./src react-scripts build",
@@ -11,28 +12,37 @@
     "lint": "eslint --config node_modules/eslint-config-react-app/index.js src",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "storybook": "NODE_PATH=./src start-storybook -p 9009 -s public",
-    "build-storybook": "NODE_PATH=./src build-storybook -s public"
+    "build-storybook": "NODE_PATH=./src build-storybook -s public",
+    "rollup": "rollup -c"
   },
   "dependencies": {
     "ionicons": "^3.0.0",
-    "polished": "^1.9.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
-    "styled-components": "^2.4.0",
-    "webfontloader": "^1.6.28"
+    "styled-components": "^2.4.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.17",
     "@storybook/addon-links": "^3.2.17",
     "@storybook/react": "^3.2.17",
     "babel-cli": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
     "coveralls": "^3.0.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "flow-bin": "^0.62.0",
-    "jest-enzyme": "^4.0.1"
+    "jest-enzyme": "^4.0.1",
+    "rollup": "^0.54.0",
+    "rollup-plugin-alias": "^1.4.0",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-node-resolve": "^3.0.2",
+    "rollup-plugin-url": "^1.3.0"
   },
   "eslintIgnore": [
     "src/__test__/",
