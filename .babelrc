@@ -9,6 +9,6 @@
           }
         }
       ]
-    ],
+    ], 
     "plugins": ["transform-class-properties"]
-  }
+  } 
