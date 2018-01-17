@@ -117,15 +117,15 @@ const Option = styled.div`
 
 class SelectOption extends PureComponent<any, any>{
     
-    render(){
-        return(<Option selected={this.props.selected} onClick={this.props.onClick.bind(null, this.props.value)}>{this.props.label}</Option>)
-    }
+	render(){
+		return(<Option selected={this.props.selected} onClick={this.props.onClick.bind(null, this.props.value)}>{this.props.label}</Option>)
+	}
 }
 
 type SelectProps = {
     themeable: Themeable,
     placeholder: string,
-    options: Array<{value: string, label:string}>,
+    options: Array<{value: string, label: string}>,
     withEmptyOption?: boolean,
     disabled?: boolean,
     block?: boolean,
@@ -140,47 +140,47 @@ export default class extends ChangeableMetaComponent<SelectProps, SelectState>{
     state = this.getDefaultState()
 
     getDefaultState(){
-        return Object.assign({}, this.state, {isOpen: false})
+    	return Object.assign({}, this.state, {isOpen: false})
     }
 
     _handleFocus(){
-        this._onFocus()
-        this.setState({isOpen: true})
+    	this._onFocus()
+    	this.setState({isOpen: true})
     }
 
     _handleBlur(){
-        this._onBlur()
-        this.setState({isOpen: false})
+    	this._onBlur()
+    	this.setState({isOpen: false})
     }
 
     _handleChevronClick(){
-        this.setState({isOpen: !this.state.isOpen})
+    	this.setState({isOpen: !this.state.isOpen})
     }
 
     _onOptionSelect(value: string){
-        this.setState({value, isOpen: false})
+    	this.setState({value, isOpen: false})
     }
 
     render(){
-        return(<Select tabIndex="0"
-                    disabled={this.props.disabled}
-                    block={this.props.block}
-                    hasFocus={this.state.focus}
-                    onFocus={this._handleFocus.bind(this)}
-                    onBlur={this._handleBlur.bind(this)}
-                    colors={this.props.themeable.colors}
-                    isOpen={this.state.isOpen}>
-            <Value isValueSet={this.state.value}>
-                {this.state.value ? this.state.value : this.props.placeholder}
-            </Value>
-            <Chevron onMouseDown={this._handleChevronClick.bind(this)} 
-                        isOpen={this.state.isOpen}/>
-            <OptionList isOpen={this.state.isOpen} 
-                        hasFocus={this.state.focus} 
-                        colors={this.props.themeable.colors}>
-                {this.props.withEmptyOption && <SelectOption onClick={this._onOptionSelect.bind(this)} label=" " value={undefined} />}
-                {this.props.options.map((option: {value: string, label: string}, index: number) => <SelectOption selected={this.state.value === option.value} key={index} onClick={this._onOptionSelect.bind(this)} value={option.value} label={option.label} />)}
-            </OptionList>
-    </Select>)
+    	return(<Select tabIndex="0"
+    		disabled={this.props.disabled}
+    		block={this.props.block}
+    		hasFocus={this.state.focus}
+    		onFocus={this._handleFocus.bind(this)}
+    		onBlur={this._handleBlur.bind(this)}
+    		colors={this.props.themeable.colors}
+    		isOpen={this.state.isOpen}>
+    		<Value isValueSet={this.state.value}>
+    			{this.state.value ? this.state.value : this.props.placeholder}
+    		</Value>
+    		<Chevron onMouseDown={this._handleChevronClick.bind(this)} 
+    			isOpen={this.state.isOpen}/>
+    		<OptionList isOpen={this.state.isOpen} 
+    			hasFocus={this.state.focus} 
+    			colors={this.props.themeable.colors}>
+    			{this.props.withEmptyOption && <SelectOption onClick={this._onOptionSelect.bind(this)} label=" " value={undefined} />}
+    			{this.props.options.map((option: {value: string, label: string}, index: number) => <SelectOption selected={this.state.value === option.value} key={index} onClick={this._onOptionSelect.bind(this)} value={option.value} label={option.label} />)}
+    		</OptionList>
+    	</Select>)
     }
 }

@@ -5,20 +5,20 @@ import {PureComponent} from 'react'
 export default class<Themable, T> extends PureComponent<any, any>{
 
     state={
-        focus: false,
-        touched: false,
-        value: undefined
+    	focus: false,
+    	touched: false,
+    	value: undefined
     }
 
     _onChange({target}: {target: HTMLInputElement}){
-        !this.props.disabled && this.props.onChange && this.props.onChange(target.value)
+    	!this.props.disabled && this.props.onChange && this.props.onChange(target.value)
     }
 
     _onFocus(){
-        this.setState({focus: true, touched: true})
+    	this.setState({focus: true, touched: true})
     }
 
     _onBlur(){
-        this.setState({focus: false})
+    	this.setState({focus: false})
     }
 }

@@ -23,9 +23,9 @@ type InputProps = {
 }
 
 const Input = styled.input.attrs({
-    type: props => props.type,
-    placeholder: props => props.placeholder,
-    name: props => props.name
+	type: props => props.type,
+	placeholder: props => props.placeholder,
+	name: props => props.name
 })`
     overflow: visible;
     -webkit-appearance: none;
@@ -60,27 +60,27 @@ const Input = styled.input.attrs({
 export default class extends MetaComponent<InputProps, Meta>{
 
     static defaultProps = {
-        type: "text",
+    	type: 'text',
     }
 
     state = this.getDefaultState()
 
     getDefaultState(){
-        return Object.assign({}, this.state, {value: this.props.value})
+    	return Object.assign({}, this.state, {value: this.props.value})
     }
 
     render(){
-        return <Input type={this.props.type}
-                        placeholder={this.props.placeholder}
-                        colors={this.props.themeable && this.props.themeable.colors}
-                        hasFocus={this.state.focus}
-                        disabled={this.props.disabled}
-                        name={this.props.name}
-                        size={this.props.xs ? '10px' : this.props.sm ? '12px' : this.props.lg ? '16px' : this.props.huge ? '20px' : this.props.massive ? '24px' : '14px'}
-                        onFocus={this._onFocus.bind(this)}
-                        onBlur={this._onBlur.bind(this)}
-                        value={this.props.value}
-                        block={this.props.block}
-                        onChange={this._onChange.bind(this)} />
+    	return <Input type={this.props.type}
+    		placeholder={this.props.placeholder}
+    		colors={this.props.themeable && this.props.themeable.colors}
+    		hasFocus={this.state.focus}
+    		disabled={this.props.disabled}
+    		name={this.props.name}
+    		size={this.props.xs ? '10px' : this.props.sm ? '12px' : this.props.lg ? '16px' : this.props.huge ? '20px' : this.props.massive ? '24px' : '14px'}
+    		onFocus={this._onFocus.bind(this)}
+    		onBlur={this._onBlur.bind(this)}
+    		value={this.props.value}
+    		block={this.props.block}
+    		onChange={this._onChange.bind(this)} />
     }
 }

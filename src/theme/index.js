@@ -12,6 +12,6 @@ export type Theme = {
 }
 
 export default {
-    colors,
-    text
+	colors,
+	text
 }

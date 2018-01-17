@@ -45,21 +45,21 @@ export default class extends MetaComponent<TextAreaProps, Meta>{
     state = this.getDefaultState()
 
     getDefaultState(){
-        return Object.assign({}, this.state, {value: this.props.value})
+    	return Object.assign({}, this.state, {value: this.props.value})
     }
 
     render(){
-        return(<Textarea onChange={this._onChange.bind(this)}
-                    onFocus={this._onFocus.bind(this)}
-                    onBlur={this._onBlur.bind(this)} 
-                    colors={this.props.themeable.colors}
-                    hasFocus={this.state.focus} 
-                    disabled={this.props.disabled}
-                    block={this.props.block}
-                    short={this.props.short}
-                    long={this.props.long}
-                    placeholder={this.props.placeholder}>
-                    {this.state.value
-                }</Textarea>) 
+    	return(<Textarea onChange={this._onChange.bind(this)}
+    		onFocus={this._onFocus.bind(this)}
+    		onBlur={this._onBlur.bind(this)} 
+    		colors={this.props.themeable.colors}
+    		hasFocus={this.state.focus} 
+    		disabled={this.props.disabled}
+    		block={this.props.block}
+    		short={this.props.short}
+    		long={this.props.long}
+    		placeholder={this.props.placeholder}>
+    		{this.state.value
+    		}</Textarea>) 
     }
 }

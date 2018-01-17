@@ -65,29 +65,29 @@ const Checkbox = styled.label`
 export default class extends ChangeableMetaComponent<CheckboxProps, CheckboxState>{
 
     static defaultProps = {
-        checked: false,
+    	checked: false,
     }
 
     state = this.getDefaultState()
 
     getDefaultState(){
-        return Object.assign({}, this.state, {value: this.props.checked})
+    	return Object.assign({}, this.state, {value: this.props.checked})
     }
 
     _onClick(){
-        this.setState({value: !this.state.value})
+    	this.setState({value: !this.state.value})
     }
 
     render(){
-        return(<RelativeWrapper block={this.props.block} 
-                    onFocus={this._onFocus.bind(this)}
-                    onClick={this._onClick.bind(this)} 
-                    onBlur={this._onBlur.bind(this)}>
-            <Checkbox hasFocus={this.state.focus}
-                        colors={this.props.themeable.colors}
-                        checked={this.state.value}
-                        disabled={this.props.disabled}
-                        tabIndex="0">{this.props.label}</Checkbox>
-        </RelativeWrapper>)
+    	return(<RelativeWrapper block={this.props.block} 
+    		onFocus={this._onFocus.bind(this)}
+    		onClick={this._onClick.bind(this)} 
+    		onBlur={this._onBlur.bind(this)}>
+    		<Checkbox hasFocus={this.state.focus}
+    			colors={this.props.themeable.colors}
+    			checked={this.state.value}
+    			disabled={this.props.disabled}
+    			tabIndex="0">{this.props.label}</Checkbox>
+    	</RelativeWrapper>)
     }
 }

@@ -8,7 +8,7 @@
     "test:watch": "NODE_PATH=./src BABEL_ENV=test NODE_ENV=test jest --env=jsdom --watch",
     "test:watchAll": "NODE_PATH=./src BABEL_ENV=test NODE_ENV=test jest --env=jsdom --watchAll",
     "test:coverage": "NODE_PATH=./src BABEL_ENV=test NODE_ENV=test jest --env=jsdom --coverage",
-    "lint": "eslint --config node_modules/eslint-config-react-app/index.js src",
+    "lint": "eslint src",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "serve:storybook": "NODE_PATH=./src start-storybook -p 9009",
     "build": "rollup -c",
@@ -26,6 +26,7 @@
     "@storybook/addon-links": "^3.2.17",
     "@storybook/react": "^3.2.17",
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.1.1",
     "babel-jest": "^22.1.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -36,6 +37,12 @@
     "coveralls": "^3.0.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
+    "eslint": "^4.15.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.41.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.5.1",
     "flow-bin": "^0.62.0",
     "jest": "^22.1.2",
     "jest-enzyme": "^4.0.1",
@@ -60,7 +67,7 @@
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
     ],
-    "setupTestFrameworkScriptFile" : "./src/__test__/setup.js",
+    "setupTestFrameworkScriptFile": "./src/__test__/setup.js",
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
@@ -83,5 +90,8 @@
       "jsx",
       "node"
     ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }

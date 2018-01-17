@@ -55,26 +55,26 @@ const Button = styled.button`
 export default class extends MetaComponent<ButtonProps, ButtonState>{
 
 
-    _onClick(e: Event){
-        this.props.onClick && this.props.onClick(e)
-    }
+	_onClick(e: Event){
+		this.props.onClick && this.props.onClick(e)
+	}
 
-    _calculateSize(){
-        if(this.props.xs) return 'padding: 1px 5px; font-size: 12px; line-height: 1.5;'
-        if(this.props.sm) return 'padding: 5px 10px; font-size: 12px; line-height: 1.5;'
-        if(this.props.lg) return 'padding: 10px 16px; font-size: 18px; line-height: 1.3333333;'
-    }
+	_calculateSize(){
+		if(this.props.xs) return 'padding: 1px 5px; font-size: 12px; line-height: 1.5;'
+		if(this.props.sm) return 'padding: 5px 10px; font-size: 12px; line-height: 1.5;'
+		if(this.props.lg) return 'padding: 10px 16px; font-size: 18px; line-height: 1.3333333;'
+	}
 
-    render(){
-        return(<Button colors={this.props.themeable.colors}
-                        text={this.props.themeable.text}
-                        hasFocus={this.state.focus}
-                        disabled={this.props.disabled}
-                        size={this._calculateSize()}
-                        block={this.props.block}
-                        onFocus={this._onFocus.bind(this)}
-                        onBlur={this._onBlur.bind(this)}
-                        onClick={this._onClick.bind(this)}>
-                    {this.props.children}</Button>)
-    }
+	render(){
+		return(<Button colors={this.props.themeable.colors}
+			text={this.props.themeable.text}
+			hasFocus={this.state.focus}
+			disabled={this.props.disabled}
+			size={this._calculateSize()}
+			block={this.props.block}
+			onFocus={this._onFocus.bind(this)}
+			onBlur={this._onBlur.bind(this)}
+			onClick={this._onClick.bind(this)}>
+			{this.props.children}</Button>)
+	}
 }

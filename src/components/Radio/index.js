@@ -72,26 +72,26 @@ const Choice = styled.label`
 
 class RadioChoice extends MetaComponent<RadioChoiceProps, Meta>{
 
-    _onChange(){
-        this.props.onChange(this.props.value)
-    }
+	_onChange(){
+		this.props.onChange(this.props.value)
+	}
 
-    render(){
-        return(<RelativeWrapper block={this.props.block}>
-                    <Choice value={this.props.value}
-                            hasFocus={this.state.focus}
-                            checked={this.props.value === this.props.selectedValue}
-                            onClick={this._onChange.bind(this)}
-                            colors={this.props.themeable.colors}
-                            disabled={this.props.disabled}
-                            onBlur={this._onBlur.bind(this)}
-                            onFocus={this._onFocus.bind(this)}
-                            block={this.props.block}
-                            tabIndex="0">
-                        {this.props.label}
-                    </Choice>
-                </RelativeWrapper>)
-    }
+	render(){
+		return(<RelativeWrapper block={this.props.block}>
+			<Choice value={this.props.value}
+				hasFocus={this.state.focus}
+				checked={this.props.value === this.props.selectedValue}
+				onClick={this._onChange.bind(this)}
+				colors={this.props.themeable.colors}
+				disabled={this.props.disabled}
+				onBlur={this._onBlur.bind(this)}
+				onFocus={this._onFocus.bind(this)}
+				block={this.props.block}
+				tabIndex="0">
+				{this.props.label}
+			</Choice>
+		</RelativeWrapper>)
+	}
 }
 
 type RadioProps = {
@@ -113,33 +113,33 @@ export default class extends ChangeableMetaComponent<RadioProps, RadioState> {
     state = this.getDefaultState()
 
     static defaultProps = {
-        value: false,
+    	value: false,
     }
 
     getDefaultState(){
-        return Object.assign({}, this.state, {value: this.props.value})
+    	return Object.assign({}, this.state, {value: this.props.value})
     }
 
     _onChoiceChange(value: string){
-        this.setState({value})   
+    	this.setState({value})   
     }
 
     addPropsToChild(child: React$Element<typeof RadioChoice>, props?: Object){
-        return React.cloneElement(child, {...props, 
-            themeable: this.props.themeable, 
-            onChange: this._onChoiceChange.bind(this), 
-            selectedValue: this.state.value,
-            disabled: this.props.disabled,
-            block: this.props.block})
+    	return React.cloneElement(child, {...props, 
+    		themeable: this.props.themeable, 
+    		onChange: this._onChoiceChange.bind(this), 
+    		selectedValue: this.state.value,
+    		disabled: this.props.disabled,
+    		block: this.props.block})
     }
 
     render(){
-        return(<Radio block={this.props.block}>
-            {Array.isArray(this.props.children) ? this.props.children.map((child, index )=> this.addPropsToChild(child, {key: index})) : this.addPropsToChild(this.props.children)}
-            </Radio>)
+    	return(<Radio block={this.props.block}>
+    		{Array.isArray(this.props.children) ? this.props.children.map((child, index )=> this.addPropsToChild(child, {key: index})) : this.addPropsToChild(this.props.children)}
+    	</Radio>)
     }
 }
 
 export {
-    RadioChoice as Choice,
+	RadioChoice as Choice,
 }
