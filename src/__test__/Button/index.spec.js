@@ -4,6 +4,7 @@ import { mount } from 'enzyme'
 import Button from '../../components/Button'
 import {Button as ThemeableButton} from '../../components'
 import theme from 'theme'
+import jsdom from 'jsdom'
 
 describe('Button', () => {
     const renderComponent = (props) => mount(<Button themeable={{colors: theme.colors.default, text: theme.text.default}} {...props}>Test</Button>)
