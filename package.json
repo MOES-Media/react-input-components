@@ -1,6 +1,6 @@
 {
   "name": "react-input-components",
-  "version": "0.1.1.1",
+  "version": "0.1.2",
   "homepage": "https://MOES-Media.github.io/react-input-components/",
   "main": "build/main.js",
   "scripts": {
