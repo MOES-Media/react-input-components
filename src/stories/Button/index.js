@@ -10,10 +10,12 @@ const sizes = ['xs', 'sm', 'md', 'lg']
 storiesOf('Button', module).add('Button', () => <div>
         <table>
             <thead>
-                {sizes.map(size => (<th>{size}</th>))}
+                <tr>
+                {sizes.map(size => (<th key={size}>{size}</th>))}
                 <th>default</th>
                 <th>disabled</th>
                 <th width="10%">block</th>
+                </tr>
             </thead>
             <tbody>
                 {themeKeys.map(key => {
@@ -21,7 +23,7 @@ storiesOf('Button', module).add('Button', () => <div>
                     return (<tr key={key}>
                         {sizes.map(size => {
                             const props = {[key]: true, [size]: true}
-                            return (<td key={size}><Button {...props} onClick={action('clicked')}>{key}</Button></td>)})}
+                            return (<td key={`${key}_${size}`}><Button {...props} onClick={action('clicked')}>{key}</Button></td>)})}
                         <td><Button {...props} onClick={action('clicked')}>{key}</Button></td>
                         <td><Button {...props} disabled onClick={action('clicked')}>{key}</Button></td>
                         <td><Button {...props} block onClick={action('clicked')}>{key}</Button></td>

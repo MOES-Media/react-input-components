@@ -5,7 +5,16 @@ export type Color = {
     hover: string,
 }
 
+export type Text = {
+    buttonText: string,
+}
+
 export type ColorConfig = {
     key: string,
     value: Color,
+}
+
+export type TextConfig = {
+    key: string,
+    value: Text,
 }

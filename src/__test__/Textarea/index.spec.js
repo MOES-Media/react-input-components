@@ -1,13 +1,11 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Input from '../../components/Input'
-import {Input as ThemeableInput } from '../../components'
+import Textarea from 'components/Textarea'
 
 describe('Input', () => {
-    const renderComponent = (props) => mount(<Input {...props} />)
-    const renderThemeableComponent = (props) => mount(<ThemeableInput {...props} />)
-    const sizes = ['xs', 'sm', 'md', 'lg', 'huge', 'massive']
-    const keys = ['primary', 'info', 'success', 'warn', 'danger']
+    const themeable = {colors: {active: '#fff', default: '#000'}}
+    const renderComponent = (props) => mount(<Textarea themeable={themeable} {...props} />)
+    const sizes = ['short', 'long']
 
     it('should render the component', () => {
         const renderedComponent = renderComponent({})
@@ -27,15 +25,8 @@ describe('Input', () => {
         expect(mockFunctions.onChange).toHaveBeenCalledWith('test')
     })
 
-    it('should render when a theme props is set', () => {
-        keys.map(key => {
-            const renderedComponent = renderThemeableComponent({[key]: true})
-            expect(renderedComponent).toBePresent()
-        })
-    })
-
-    it('should set focus and touched when focused', () => {
-        const renderedComponent = renderComponent({themeable: {colors: {active: '#fff', default: '#ddd'}}})
+    it('should handle the focus event', () => {
+        const renderedComponent = renderComponent({})
         expect(renderedComponent.state().focus).toBe(false)
         expect(renderedComponent.state().touched).toBe(false)
         renderedComponent.simulate('focus')

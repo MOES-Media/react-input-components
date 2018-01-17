@@ -9,6 +9,7 @@ describe('Themeable HOC', () => {
         }
     })
     const ThemeableComponent = themeable(MockComponent)
+    const ThemeableComponentNoOverrideDefaults = themeable(MockComponent, false)
     const keys = ['primary', 'info', 'success', 'warn', 'danger']
 
     it('should render a component when theme property is passed', () => {
@@ -18,5 +19,6 @@ describe('Themeable HOC', () => {
             return expect(renderedHoc).toBePresent()
         })
         expect(mount(<ThemeableComponent />)).toBePresent()
+        expect(mount(<ThemeableComponentNoOverrideDefaults />)).toBePresent()
     })
 })
