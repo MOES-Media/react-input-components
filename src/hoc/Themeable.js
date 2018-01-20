@@ -14,10 +14,10 @@ export default (WrappedComponent: React$ComponentType<Themeable>, overrideDefaul
 
 	const calculatedTheme = (props: Themeable) => props.primary ? composeTheme('primary') : 
 		props.info ? composeTheme('info') : 
-			props.success ? composeTheme('success') : 
-				props.warn ? composeTheme('warn') : 
-					props.danger ? composeTheme('danger') : 
-						overrideDefault ? composeTheme('default') : undefined
+		props.success ? composeTheme('success') : 
+		props.warn ? composeTheme('warn') : 
+		props.danger ? composeTheme('danger') : 
+		overrideDefault ? composeTheme('default') : undefined
 
 	return (props: Themeable) => {
 		return <WrappedComponent themeable={calculatedTheme(props)} {...props} />

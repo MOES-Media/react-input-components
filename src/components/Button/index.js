@@ -14,6 +14,7 @@ export type ButtonProps = Themeable & {
     md?: boolean,
     lg?: boolean,
     block?: boolean,
+    noLeftRadius?: boolean,
 }
 
 type ButtonState = Meta & {
@@ -34,7 +35,6 @@ const Button = styled.button`
     font-weight: 700;
     text-shadow: none;
     padding: 10px 20px;
-    margin: 0 3px 0;
     color: ${props => props.text.buttonText};
     background: ${props => props.hasFocus ? props.colors.active : props.colors.default} none;
     ${props => props.disabled && 'opacity: 0.65;'}
@@ -46,6 +46,7 @@ const Button = styled.button`
     cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
     ${props => props.size && props.size}
     ${props => props.block && 'display: block; width: 100%;'}
+    ${props => props.noLeftRadius && 'border-top-left-radius: 0; border-bottom-left-radius: 0;'}
 
     ${props => !props.disabled && `&:hover{
         background: ${props.colors.hover};
@@ -60,9 +61,9 @@ export default class extends MetaComponent<ButtonProps, ButtonState>{
 	}
 
 	_calculateSize(){
-		if(this.props.xs) return 'padding: 1px 5px; font-size: 12px; line-height: 1.5;'
-		if(this.props.sm) return 'padding: 5px 10px; font-size: 12px; line-height: 1.5;'
-		if(this.props.lg) return 'padding: 10px 16px; font-size: 18px; line-height: 1.3333333;'
+		if(this.props.xs) return 'padding: 1px 5px; font-size: 12px; line-height: 1.5em;'
+		if(this.props.sm) return 'padding: 5px 10px; font-size: 12px; line-height: 1.5em;'
+		if(this.props.lg) return 'padding: 10px 16px; font-size: 17px; line-height: 1.15em;'
 	}
 
 	render(){
@@ -74,7 +75,8 @@ export default class extends MetaComponent<ButtonProps, ButtonState>{
 			block={this.props.block}
 			onFocus={this._onFocus.bind(this)}
 			onBlur={this._onBlur.bind(this)}
-			onClick={this._onClick.bind(this)}>
+			onClick={this._onClick.bind(this)}
+            noLeftRadius={this.props.noLeftRadius}>
 			{this.props.children}</Button>)
 	}
 }

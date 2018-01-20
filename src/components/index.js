@@ -1,5 +1,6 @@
 //@flow
 import themeable from 'hoc/Themeable'
+import withButton from 'hoc/WithButton'
 import {default as ButtonComponent} from 'components/Button'
 import {default as Input} from 'components/Input'
 import {default as Checkbox} from 'components/Checkbox'
@@ -14,10 +15,13 @@ const themedCheckbox = themeable(Checkbox)
 const themedRadio = themeable(RadioGroup)
 const themedSelect = themeable(Select)
 const themedTextarea = themeable(Textarea)
+const inputWithButton = themeable(withButton(Input))
+
 
 export {
 	themedButton as Button,
 	themedInput as Input,
+	inputWithButton as InputButtonGroup,
 	themedCheckbox as Checkbox,
 	themedRadio as RadioGroup,
 	themedSelect as Select,
