@@ -15,6 +15,7 @@ export type ButtonProps = Themeable & {
     lg?: boolean,
     block?: boolean,
     noLeftRadius?: boolean,
+    transparent?: boolean,
 }
 
 type ButtonState = Meta & {
@@ -36,7 +37,7 @@ const Button = styled.button`
     text-shadow: none;
     padding: 10px 20px;
     color: ${props => props.text.buttonText};
-    background: ${props => props.hasFocus ? props.colors.active : props.colors.default} none;
+    background: ${props => props.transparent ? 'transparent' : props.hasFocus ? props.colors.active : props.colors.default} none;
     ${props => props.disabled && 'opacity: 0.65;'}
     vertical-align: baseline;
     border: none;
@@ -49,7 +50,7 @@ const Button = styled.button`
     ${props => props.noLeftRadius && 'border-top-left-radius: 0; border-bottom-left-radius: 0;'}
 
     ${props => !props.disabled && `&:hover{
-        background: ${props.colors.hover};
+        background: ${props.transparent ? 'transparent' : props.colors.hover};
     }`}
 `
 
@@ -76,7 +77,8 @@ export default class extends MetaComponent<ButtonProps, ButtonState>{
 			onFocus={this._onFocus.bind(this)}
 			onBlur={this._onBlur.bind(this)}
 			onClick={this._onClick.bind(this)}
-            noLeftRadius={this.props.noLeftRadius}>
+            noLeftRadius={this.props.noLeftRadius}
+            transparent={this.props.transparent} >
 			{this.props.children}</Button>)
 	}
 }

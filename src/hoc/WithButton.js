@@ -50,8 +50,9 @@ export default (WrappedComponent: React$ComponentType<WithButtonProps>) => class
                 this.setButtonWidth()}}>
                 <Button lg 
                     noLeftRadius
+                    transparent={this.props.noBackground}
                     disabled={this.props.disabled}
-                    onClick={() => this._onWrappedButtonClick()}>Test</Button>
+                    onClick={() => this._onWrappedButtonClick()}>{this.props.buttonContent}</Button>
             </ButtonWrapper>
         </WithButtonWrapper>)
     }

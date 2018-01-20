@@ -38,5 +38,8 @@ export default () => (<div>
         return(<div key={size}><p><Input name={`${size}-input`} onChange={action('onChange')} placeholder={size} {...props} /></p></div>)
     })}
     <h4>InputButtonGroup</h4>
-    <InputButtonGroup placeholder="Default with button"/>&nbsp;<InputButtonGroup placeholder="Disabled with button" disabled/>
+    <InputButtonGroup placeholder="Default with button" buttonContent="Btn"/>&nbsp;<InputButtonGroup placeholder="Disabled with button" disabled buttonContent="Btn"/>
+    <p>
+        <InputButtonGroup placeholder="Block with button" block noBackground buttonContent="Btn"/>
+    </p>
     </div>)
