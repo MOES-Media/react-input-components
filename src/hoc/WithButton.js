@@ -1,25 +1,26 @@
 //@flow
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Button } from 'components'
+import Button  from 'components/Button'
 import styled from 'styled-components'
 import type {WithButtonProps} from 'types'
 
-const WithButtonWrapper = styled.span`
+const WithButtonWrapper = styled.div`
     display: ${props => props.block ? 'block' : 'inline-block'};
     position: relative;
     box-sizing: border-box;
     border: 1px solid ${props => props.colors.default};
     border-radius: 3px;
     ${props => props.disabled && 'pointer-events: none; opacity: .65;'}
+    padding: 0;
 `
-const ButtonWrapper = styled.span`
+const ButtonWrapper = styled.div`
     position: absolute;
     top: 0;
     right: 0;
 `
 
-export default (WrappedComponent: React$ComponentType<WithButtonProps>) => class extends React.PureComponent<any, any>{
+export default (WrappedComponent: React$ComponentType<WithButtonProps>) => (class extends React.PureComponent<any, any>{
     buttonWrapper = null
     wrappedComponentRef = null
 
@@ -40,7 +41,8 @@ export default (WrappedComponent: React$ComponentType<WithButtonProps>) => class
 
     render(){
         return(<WithButtonWrapper block={this.props.block} 
-            colors={this.props.themeable.colors}>
+            colors={this.props.themeable.colors}
+            disabled={this.props.disabled}>
             <WrappedComponent
                 {...this.props}
                 borderLess
@@ -53,9 +55,8 @@ export default (WrappedComponent: React$ComponentType<WithButtonProps>) => class
                     noLeftRadius
                     themeable={this.props.themeable}
                     transparent={this.props.noBackground}
-                    disabled={this.props.disabled}
                     onClick={this._onWrappedButtonClick.bind(this)}>{this.props.buttonContent}</Button>
             </ButtonWrapper>
         </WithButtonWrapper>)
     }
-} 
+})

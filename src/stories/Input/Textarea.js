@@ -30,7 +30,7 @@ export default () => {
             <tbody>
                 {themeKeys.map(key => {
                     const props = {[key]: true}
-                    return <tr index={key}>
+                    return <tr key={key}>
                                 <td><Textarea {...props} onChange={action('onchange')} placeholder={`${key} textarea`}/></td>
                                 <td><Textarea {...props} onChange={action('onchange')} disabled placeholder={`${key} disabled textarea`}/></td>
                             </tr>})}

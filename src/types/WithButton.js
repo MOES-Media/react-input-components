@@ -1,6 +1,5 @@
 //@flow
 import type {Themeable} from 'types'
-import React from 'react'
 
 export type WithButtonProps = Themeable & {
     buttonLeft?: boolean,
