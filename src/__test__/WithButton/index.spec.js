@@ -30,6 +30,5 @@ describe('WithButton', () => {
         const renderedComponent = renderInputWithButton({onButtonClick: mockFunctions.onButtonClick})
         renderedComponent.find('button').simulate('click')
         expect(mockFunctions.onButtonClick).toHaveBeenCalled()
-        renderedComponent.state().buttonWidth = 70
     })
 })
