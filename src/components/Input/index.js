@@ -73,7 +73,8 @@ export default class extends MetaComponent<InputProps, Meta>{
     }
 
     render(){
-    	return <Input type={this.props.type}
+        return <Input type={this.props.type}
+            ref={this.props.inputRef}
     		placeholder={this.props.placeholder}
     		colors={this.props.themeable && this.props.themeable.colors}
     		hasFocus={this.state.focus}
