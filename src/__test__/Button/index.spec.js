@@ -15,6 +15,7 @@ describe('Button', () => {
         expect(renderedComponent).toBePresent()
         const renderedThemeableButton = renderedThemeableComponent({primary: true})
         expect(renderedThemeableButton).toBePresent()
+        expect(renderComponent({transparent: true})).toBePresent()
     })
 
     it('should render a block button', () => {

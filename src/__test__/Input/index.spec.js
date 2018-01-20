@@ -16,6 +16,8 @@ describe('Input', () => {
         expect(renderedDisabledComponent).toBePresent()
         const renderedBlockComponent = renderComponent({block: true})
         expect(renderedBlockComponent).toBePresent()
+        const renderedOffsetComponent = renderComponent({offsetRight: 75})
+        expect(renderedOffsetComponent).toBePresent()
     })
 
     it('should call the onChange function', () => {

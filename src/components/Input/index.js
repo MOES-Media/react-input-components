@@ -19,7 +19,9 @@ type InputProps = {
     lg?: boolean,
     huge?: boolean,
     massive?: boolean,
-    value?: string
+    value?: string,
+    offsetRight?: number,
+    borederLess?: boolean,
 }
 
 const Input = styled.input.attrs({
@@ -33,7 +35,7 @@ const Input = styled.input.attrs({
     transition: box-shadow .1s ease,border-color .1s ease;
     border-radius: 3px;
     color: ${props => props.hasFocus ? 'rgba(0,0,0,.87)' : 'rgba(0,0,0,.8)'};
-    border: 1px solid ${props => props.colors ? props.hasFocus ? props.colors.active : props.colors.default : props.hasFocus ? '#85b7d9' : 'rgba(34,36,38,.15)'};
+    border: 1px solid ${props => props.noBorder ? 'transparent' : props.colors ? props.hasFocus ? props.colors.active : props.colors.default : props.hasFocus ? '#85b7d9' : 'rgba(34,36,38,.15)'};
     background: #fff;
     padding: 10px 14px;
     line-height: 17px;
@@ -45,10 +47,11 @@ const Input = styled.input.attrs({
     -ms-flex: 1 0 auto;
     margin: 0;
     max-width: 100%;
-    ${props => props.disabled && 'pointer-events: none; opacity: .45;'}
+    ${props => props.disabled && 'pointer-events: none; opacity: .65;'}
     ${props => props.block && 'display: block; min-width: 100%;'}
     box-sizing: border-box;
     font-size: ${props => props.size};
+    ${props => props.offsetRight && `padding-right: ${props.offsetRight}px;`}
 
     &::placeholder{
         opacity: ${props => props.hasFocus ? '1' : '.65'};
@@ -70,7 +73,8 @@ export default class extends MetaComponent<InputProps, Meta>{
     }
 
     render(){
-    	return <Input type={this.props.type}
+        return <Input type={this.props.type}
+            ref={this.props.inputRef}
     		placeholder={this.props.placeholder}
     		colors={this.props.themeable && this.props.themeable.colors}
     		hasFocus={this.state.focus}
@@ -80,7 +84,9 @@ export default class extends MetaComponent<InputProps, Meta>{
     		onFocus={this._onFocus.bind(this)}
     		onBlur={this._onBlur.bind(this)}
     		value={this.props.value}
-    		block={this.props.block}
+            block={this.props.block}
+            offsetRight={this.props.offsetRight}
+            noBorder={this.props.borderLess}
     		onChange={this._onChange.bind(this)} />
     }
 }
