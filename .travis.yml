@@ -18,6 +18,7 @@ install: yarn
 script:
 - yarn lint
 - yarn flow
+- yarn flow:coverage
 - yarn test:coverage
 - yarn test:vulnerabilities
 - yarn build:release
