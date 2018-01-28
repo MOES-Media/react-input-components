@@ -1,41 +1,44 @@
 //@flow
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React, {PureComponent} from 'react'
 import Button  from 'components/Button'
 import styled from 'styled-components'
-import type {WithButtonProps} from 'types'
+import type {WithButtonProps, Color} from 'types'
 
-const WithButtonWrapper = styled.div`
-    display: ${props => props.block ? 'block' : 'inline-block'};
+type WithButtonWrapperProps = {
+    block?: boolean,
+    colors: Color,
+    disabled?: boolean
+}
+
+const WithButtonWrapper: React$ComponentType<*> = styled.div`
+    display: ${(props: WithButtonWrapperProps) => props.block ? 'block' : 'inline-block'};
     position: relative;
     box-sizing: border-box;
-    border: 1px solid ${props => props.colors.default};
+    border: 1px solid ${(props: WithButtonWrapperProps) => props.colors.default};
     border-radius: 3px;
-    ${props => props.disabled && 'pointer-events: none; opacity: .65;'}
+    ${(props: WithButtonWrapperProps) => props.disabled && 'pointer-events: none; opacity: .65;'}
     padding: 0;
 `
-const ButtonWrapper = styled.div`
+const ButtonWrapper: React$ComponentType<*> = styled.div`
     position: absolute;
     top: 0;
     right: 0;
 `
 
-export default (WrappedComponent: React$ComponentType<WithButtonProps>) => (class extends React.PureComponent<any, any>{
-    buttonWrapper = null
-    wrappedComponentRef = null
+export default (WrappedComponent: React$ComponentType<any>): React$ComponentType<any> => class extends PureComponent<any, any>{
+    
+    buttonWrapper: ?HTMLElement
+    props: WithButtonProps
 
-    state:{
-        buttonWidth: typeof undefined | number,
-    } = {
+    state = {
         buttonWidth: undefined,
     }
 
-    setButtonWidth(){
-        this.setState({buttonWidth: this.buttonWrapper && this.buttonWrapper.offsetWidth})
+    setButtonWidth(): void{
+        this.buttonWrapper && this.setState({buttonWidth: this.buttonWrapper.offsetWidth})
     }
 
-    _onWrappedButtonClick(e: Event){
-        ReactDOM.findDOMNode(this.wrappedComponentRef) &&  ReactDOM.findDOMNode(this.wrappedComponentRef).focus()
+    _onWrappedButtonClick(e: Event): void{
         this.props.onButtonClick && this.props.onButtonClick(e)
     }
 
@@ -46,9 +49,8 @@ export default (WrappedComponent: React$ComponentType<WithButtonProps>) => (clas
             <WrappedComponent
                 {...this.props}
                 borderLess
-                offsetRight={this.state.buttonWidth ? this.state.buttonWidth + 5 : this.state.buttonWidth }
-                ref={(ref) => this.wrappedComponentRef = ref} />
-            <ButtonWrapper innerRef={(ref) => {
+                offsetRight={this.state.buttonWidth || this.state.buttonWidth === 0 ? this.state.buttonWidth + 5 : this.state.buttonWidth }/>
+            <ButtonWrapper innerRef={(ref: HTMLElement) => {
                 this.buttonWrapper = ref 
                 this.setButtonWidth()}}>
                 <Button lg 
@@ -59,4 +61,4 @@ export default (WrappedComponent: React$ComponentType<WithButtonProps>) => (clas
             </ButtonWrapper>
         </WithButtonWrapper>)
     }
-})
+}

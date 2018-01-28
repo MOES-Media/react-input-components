@@ -8,7 +8,7 @@ type TagProps = {
     onClick: Function,
 }
 
-const Tag = styled.a`
+const Tag: React$ComponentType<*> = styled.a`
     text-decoration: none;
     transition: background .1s ease;
     border-radius: 2px;
@@ -32,7 +32,7 @@ const Tag = styled.a`
     }
 `
 
-const Icon = styled.i`
+const Icon: React$ComponentType<*> = styled.i`
     display: inline-block;
     height: 1em;
     font-style: normal;
@@ -56,7 +56,7 @@ const Icon = styled.i`
     }
 `
 
-export default class extends PureComponent<TagProps, any> {
+export default class extends PureComponent<TagProps, *> {
 
     render(){
         return(<Tag>{this.props.label}<Icon onClick={this.props.onClick.bind(null, this.props.value)}/></Tag>)

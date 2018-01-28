@@ -18,3 +18,8 @@ export type TextConfig = {
     key: string,
     value: Text,
 }
+
+export type Theme = {
+    colors: Color,
+    text: Text
+}

@@ -1,11 +1,13 @@
 //@flow
-import type {Themeable} from 'types'
+import type {Theme} from 'types/Theme'
 
-export type WithButtonProps = Themeable & {
+export type WithButtonProps =  {
     buttonLeft?: boolean,
     buttonTheme?: string, 
     block?: boolean,
     buttonContent: React$Node,
-    onButtonClick?: Function,
+    onButtonClick?: (Event) => void,
     noBackground?: boolean,
+    themeable: Theme,
+    disabled?: boolean,
 }

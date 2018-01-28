@@ -3,7 +3,7 @@ import { injectGlobal } from 'styled-components'
 import ionicons from 'ionicons/dist/fonts/ionicons.woff'
 
 const fontFace = ({font, fontFamily}: {
-    font: any,
+    font: string,
     fontFamily: string
   }) => {
 	return `

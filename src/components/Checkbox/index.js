@@ -2,7 +2,7 @@
 import React from 'react'
 import ChangeableMetaComponent from 'components/ChangeableMetaComponent'
 import styled from 'styled-components'
-import type {Meta, Themeable} from 'types'
+import type {Themeable, Color} from 'types'
 
 type CheckboxProps = {
     name: string,
@@ -10,28 +10,36 @@ type CheckboxProps = {
     label?: string,
     block?: boolean,
     themeable: Themeable,
-    label?: string
+    label?: string,
+    disabled?: boolean,
 }
 
-type CheckboxState = Meta & {
-    value: boolean,
+type RelativeWrapperProps = {
+    block?: boolean,
 }
 
-const RelativeWrapper = styled.div`
-    display: ${props => props.block ? 'block' : 'inline-block'};
+const RelativeWrapper: React$ComponentType<*> = styled.div`
+    display: ${(props: RelativeWrapperProps) => props.block ? 'block' : 'inline-block'};
     position: relative;
     min-width: 17px;
     vertical-align: baseline;
     padding: 2px 5px 2px 0;
 `
 
-const Checkbox = styled.label`
+type CheckboxComponentProps = {
+    hasFocus?: boolean,
+    disabled?: boolean,
+    colors: Color,
+    checked?: boolean,
+}
+
+const Checkbox: React$ComponentType<*> = styled.label`
     cursor: pointer;
     user-select: none;
-    color: ${props => props.hasFocus ? 'rgba(0,0,0,.95)' : 'rgba(0,0,0,.8)'};
+    color: ${(props: CheckboxComponentProps) => props.hasFocus ? 'rgba(0,0,0,.95)' : 'rgba(0,0,0,.8)'};
     padding-left: 26px;
     outline: 0;
-    ${props => props.disabled && 'pointer-events: none; opacity: .45;'}
+    ${(props: CheckboxComponentProps) => props.disabled && 'pointer-events: none; opacity: .45;'}
     font-size: 14px;
 
     &:before{
@@ -43,10 +51,10 @@ const Checkbox = styled.label`
         height: 17px;
         background: #fff;
         border-radius: 3px;
-        border: 1px solid ${props => props.hasFocus ? props.colors.active : props.colors.default};
+        border: 1px solid ${(props: CheckboxComponentProps) => props.hasFocus ? props.colors.active : props.colors.default};
     }
 
-    ${props => props.checked && `
+    ${(props: CheckboxComponentProps) => props.checked && `
         &:after{
             font-family: 'Ionicons';
             content: '\\f3ff';
@@ -62,7 +70,7 @@ const Checkbox = styled.label`
     `}
 `
 
-export default class extends ChangeableMetaComponent<CheckboxProps, CheckboxState>{
+export default class extends ChangeableMetaComponent<CheckboxProps, *>{
 
     static defaultProps = {
     	checked: false,

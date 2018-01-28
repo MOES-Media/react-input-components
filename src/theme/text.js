@@ -1,4 +1,5 @@
-//flow
+//@flow
+
 export default {
 	primary:{
 		buttonText: '#fff',

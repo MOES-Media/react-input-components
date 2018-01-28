@@ -3,9 +3,9 @@ import React from 'react'
 import theme from 'theme'
 import type {Themeable} from 'types'
 
-export default (WrappedComponent: React$ComponentType<Themeable>, overrideDefault: boolean = true) => {
+export default (WrappedComponent: React$ComponentType<*>, overrideDefault: boolean = true): React$ComponentType<*> => {
 
-	const composeTheme = (key: string) => {
+	const composeTheme = (key: 'primary' | 'info' | 'success' | 'warn' | 'danger' | 'default') => {
 		return {
 			colors: theme.colors[key],
 			text: theme.text[key]

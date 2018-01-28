@@ -1,15 +1,6 @@
-{ "presets": [
-      "stage-1",
-      "react",
-      "flow",
-      [
-        "latest", {
-          "es2015": {
-            "modules": false
-          }
-        }
-      ]
-    ], 
+{ "presets": ["stage-1", "react", "flow", ["latest", 
+  { "es2015": { "modules": false }}]
+],
     "plugins": ["transform-class-properties"],
     "env" : {
       "test": {

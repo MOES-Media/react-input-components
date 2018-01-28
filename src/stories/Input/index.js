@@ -7,6 +7,7 @@ import select from 'stories/Input/Select'
 import textarea from 'stories/Input/Textarea'
 import input from 'stories/Input/Input'
 import inputButtonGroup from 'stories/Input/InputButtonGroup'
+import multiSelect from 'stories/Input/MultiSelect'
 
 storiesOf('Input', module)
     .add('TextInput', input)
@@ -14,4 +15,5 @@ storiesOf('Input', module)
     .add('Checkbox', checkbox)
     .add('Radio', radio)
     .add('Select', select)
+    .add('MultiSelect', multiSelect)
     .add('Textarea', textarea)

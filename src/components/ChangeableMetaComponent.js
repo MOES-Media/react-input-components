@@ -1,10 +1,12 @@
 //@flow
 import MetaComponent from './MetaComponent'
 
-// eslint-disable-next-line
-export default class<Themable, T> extends MetaComponent<any, any>{
+type ChangeableState = {value: string | boolean | Array<string>}
+type ChangeableProps = {onChange?: (string | boolean | Array<string>) => void}
 
-	componentWillUpdate(nextProps: Object , nextState: Object){
+export default class<Props, State> extends MetaComponent<Props & ChangeableProps, State & ChangeableState>{
+
+	componentWillUpdate(nextProps: ChangeableProps , nextState: ChangeableState): void{
 		this.state.value !== nextState.value && nextProps.onChange && nextProps.onChange(nextState.value)
 	}
 }

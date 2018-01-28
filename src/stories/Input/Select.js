@@ -53,10 +53,7 @@ export default () => {
                                 </td>
                             </tr>
                 })}
-            </tbody>
+            </tbody> 
         </table>
-        <h4>Multiselect</h4>
-        <h5>SelectedValue Tag</h5>
-        <Tag label="test" value="test" onClick={action('tagClicked')}/>
     </div>)
 }

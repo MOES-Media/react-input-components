@@ -1,7 +1,7 @@
 [ignore]
 .*/node_modules/.*src
-.*/node_modules/polished/
 .*/src/__test__/.*
+.*/node_modules/styled-components/.*
 
 [include]
 
@@ -10,5 +10,7 @@
 [options]
 module.system.node.resolve_dirname=src
 module.system.node.resolve_dirname=node_modules
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
 
 [lints]

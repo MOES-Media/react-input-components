@@ -1,13 +1,12 @@
 //@flow
-import type {Theme} from 'theme'
+import type {Theme} from './theme'
 
-export type Themeable = {
+export type Themeable = Theme & {
     primary?: boolean,
     info?: boolean,
     success?: boolean,
     warn?: boolean,
     danger?: boolean,
     default?: boolean,
-    themeable?: Theme,
     overrideDefault?: boolean,
 }

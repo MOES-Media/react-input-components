@@ -13,6 +13,10 @@ describe('WithButton', () => {
         expect(renderInputWithButton({})).toBePresent()
         expect(renderInputWithButton({block: true})).toBePresent()
         expect(renderInputWithButton({disabled: true})).toBePresent()
+        const withButtonWidth  = renderInputWithButton({})
+        withButtonWidth.state({buttonWidth: 70})
+        withButtonWidth.update()
+        expect(withButtonWidth).toBePresent()
     })
 
     it('should pass the onchange function to the input', () => {

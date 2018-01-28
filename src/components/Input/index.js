@@ -1,7 +1,7 @@
 //@flow
 import React from 'react'
 import MetaComponent from 'components/MetaComponent'
-import type {Meta, Themeable} from 'types' 
+import type {Themeable, Color} from 'types' 
 import styled from 'styled-components'
 
 type InputProps = {
@@ -21,21 +21,33 @@ type InputProps = {
     massive?: boolean,
     value?: string,
     offsetRight?: number,
-    borederLess?: boolean,
+    borderLess?: boolean,
 }
 
-const Input = styled.input.attrs({
-	type: props => props.type,
-	placeholder: props => props.placeholder,
-	name: props => props.name
+type InputComponentProps = {
+    hasFocus?: boolean,
+    colors: Color,
+    disabeld?: boolean,
+    block?: boolean,
+    offsetRight: number,
+    size: string,
+    type: string,
+    placeholder?: string,
+    name?: string
+}
+
+const Input = styled('input').attrs({
+	type: (props: InputComponentProps) => props.type,
+	placeholder: (props: InputComponentProps) => props.placeholder,
+	name: (props: InputComponentProps) => props.name
 })`
     overflow: visible;
     -webkit-appearance: none;
-    box-shadow: ${props => props.hasFocus ? '0 2px 3px 0 rgba(34,36,38,.15)' : 'none'};
+    box-shadow: ${(props: InputComponentProps) => props.hasFocus ? '0 2px 3px 0 rgba(34,36,38,.15)' : 'none'};
     transition: box-shadow .1s ease,border-color .1s ease;
     border-radius: 3px;
-    color: ${props => props.hasFocus ? 'rgba(0,0,0,.87)' : 'rgba(0,0,0,.8)'};
-    border: 1px solid ${props => props.noBorder ? 'transparent' : props.colors ? props.hasFocus ? props.colors.active : props.colors.default : props.hasFocus ? '#85b7d9' : 'rgba(34,36,38,.15)'};
+    color: ${(props: InputComponentProps) => props.hasFocus ? 'rgba(0,0,0,.87)' : 'rgba(0,0,0,.8)'};
+    border: ${(props: InputComponentProps) => props.noBorder ? 'transparent' : `1px solid ${props.colors ? props.hasFocus ? props.colors.active : props.colors.default : props.hasFocus ? '#85b7d9' : 'rgba(34,36,38,.15)'}`};
     background: #fff;
     padding: 10px 14px;
     line-height: 17px;
@@ -47,20 +59,20 @@ const Input = styled.input.attrs({
     -ms-flex: 1 0 auto;
     margin: 0;
     max-width: 100%;
-    ${props => props.disabled && 'pointer-events: none; opacity: .65;'}
-    ${props => props.block && 'display: block; min-width: 100%;'}
+    ${(props: InputComponentProps) => props.disabled && 'pointer-events: none; opacity: .65;'}
+    ${(props: InputComponentProps) => props.block && 'display: block; min-width: 100%;'}
     box-sizing: border-box;
-    font-size: ${props => props.size};
-    ${props => props.offsetRight && `padding-right: ${props.offsetRight}px;`}
+    font-size: ${(props: InputComponentProps) => props.size};
+    ${(props: InputComponentProps) => props.offsetRight && `padding-right: ${props.offsetRight}px;`}
 
     &::placeholder{
-        opacity: ${props => props.hasFocus ? '1' : '.65'};
-        font-size: ${props => props.size};
+        opacity: ${(props: InputComponentProps) => props.hasFocus ? '1' : '.65'};
+        font-size: ${(props: InputComponentProps) => props.size};
         vertical-align: bottom;
     }
 `
 
-export default class extends MetaComponent<InputProps, Meta>{
+export default class extends MetaComponent<InputProps, *>{
 
     static defaultProps = {
     	type: 'text',
@@ -74,7 +86,6 @@ export default class extends MetaComponent<InputProps, Meta>{
 
     render(){
         return <Input type={this.props.type}
-            ref={this.props.inputRef}
     		placeholder={this.props.placeholder}
     		colors={this.props.themeable && this.props.themeable.colors}
     		hasFocus={this.state.focus}

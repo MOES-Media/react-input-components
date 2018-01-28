@@ -3,37 +3,53 @@ import React from 'react'
 import styled from 'styled-components'
 import MetaComponent from 'components/MetaComponent'
 import ChangeableMetaComponent from 'components/ChangeableMetaComponent'
-import type {Meta, Themeable} from 'types'
+import type {Themeable, Color} from 'types'
 
 type RadioChoiceProps = {
-    onChange: Function,
+    onChange: (string) => void,
     value: string,
     label: string,
     selectedValue?: string,
     disabled?: boolean,
+    block?: boolean,
+    themeable: Themeable,
 }
 
-const RelativeWrapper = styled.div`
+type RelativeWrapperProps = {block?: boolean}
+
+const RelativeWrapper: React$ComponentType<*> = styled.div`
     display: inline-block;
     position: relative;
     min-width: 17px;
     vertical-align: baseline;
     padding: 2px 5px 2px 0;
-    ${props => props.block && 'display: block; width: 100%;'}
+    ${(props: RelativeWrapperProps) => props.block && 'display: block; width: 100%;'}
 `
 
-const Radio = styled.div`
-    display: ${props => props.block ? 'block' : 'inline-block'};
+type RadioComponentProps = {
+    block?: boolean
+}
+
+const Radio: React$ComponentType<*> = styled.div`
+    display: ${(props: RadioComponentProps) => props.block ? 'block' : 'inline-block'};
 `
 
-const Choice = styled.label`
+type ChoiceComponentProps = {
+    hasFocus?: boolean,
+    diasbled?: boolean,
+    block?: boolean,
+    colors: Color,
+    checked?: boolean,
+}
+
+const Choice: React$ComponentType<*> = styled.label`
     cursor: pointer;
     user-select: none;
-    color: ${props => props.hasFocus ? 'rgba(0,0,0,.95)' : 'rgba(0,0,0,.8)'};
+    color: ${(props: ChoiceComponentProps) => props.hasFocus ? 'rgba(0,0,0,.95)' : 'rgba(0,0,0,.8)'};
     padding-left: 26px;
     outline: 0;
-    ${props => props.disabled && 'pointer-events: none; opacity: .45;'}
-    ${props => props.block && 'display: block; width: 100%;'}
+    ${(props: ChoiceComponentProps) => props.disabled && 'pointer-events: none; opacity: .45;'}
+    ${(props: ChoiceComponentProps) => props.block && 'display: block; width: 100%;'}
     font-size: 14px;
 
     &:before{
@@ -47,10 +63,10 @@ const Choice = styled.label`
         height: 15px;
         top: 3px;
         left: 0;
-        border:1px solid ${props => props.hasFocus ? props.colors.active : props.colors.default};
+        border:1px solid ${(props: ChoiceComponentProps) => props.hasFocus ? props.colors.active : props.colors.default};
     }
 
-    ${props => props.checked && `
+    ${(props: ChoiceComponentProps) => props.checked && `
         &:after{
             position: absolute;
             font-size: 20px;
@@ -70,7 +86,7 @@ const Choice = styled.label`
     `}
 `
 
-class RadioChoice extends MetaComponent<RadioChoiceProps, Meta>{
+class RadioChoice extends MetaComponent<RadioChoiceProps, *>{
 
 	_onChange(){
 		this.props.onChange(this.props.value)
@@ -103,13 +119,11 @@ type RadioProps = {
     block?: boolean,
 }
 
-type RadioState = {
-    value: string,
-}
 
-export default class extends ChangeableMetaComponent<RadioProps, RadioState> {
+export default class extends ChangeableMetaComponent<RadioProps, *> {
 
     static Choice = RadioChoice
+
     state = this.getDefaultState()
 
     static defaultProps = {
@@ -120,7 +134,7 @@ export default class extends ChangeableMetaComponent<RadioProps, RadioState> {
     	return Object.assign({}, this.state, {value: this.props.value})
     }
 
-    _onChoiceChange(value: string){
+    _onChoiceChange(value: string): void{
     	this.setState({value})   
     }
 
