@@ -19,7 +19,7 @@
   "dependencies": {
     "ionicons": "^3.0.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.2.1",
     "styled-components": "^2.4.0"
   },
   "devDependencies": {
